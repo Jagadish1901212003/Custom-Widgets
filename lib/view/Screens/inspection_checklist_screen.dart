@@ -159,7 +159,19 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
       //   "documents": documentFiles.map((f) => path.basename(f.path)).toList(),
       //   "photos": photoFiles.map((f) => path.basename(f.path)).toList(),
       // },
-      "correctiveActions": submittedCorrectiveActions,
+      // "correctiveActions": submittedCorrectiveActions,
+      "correctiveActions": submittedCorrectiveActions.map((action) {
+        return {
+          "uniqueId": action["uniqueId"],
+          "assignTo": action["assignTo"],
+          "priority": (action["priority"] as DropdownItemModel).name,
+          "caCategory": (action["caCategory"] as DropdownItemModel).name,
+          "status": (action["status"] as DropdownItemModel).name,
+          "dueDate": action["dueDate"],
+          "caDescription": action["caDescription"],
+          "notes": action["notes"],
+        };
+      }).toList(),
       "notes": NotesInCustomTabBarScreen.notes
           .map(
             (note) => {"date": note.date.toIso8601String(), "note": note.note},

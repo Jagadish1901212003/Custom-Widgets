@@ -618,6 +618,7 @@ class _CaDescriptionScreenState extends State<CaDescriptionScreen> {
               'status': selectedStatuses,
               'dueDate': dueDateController.text,
               'caDescription': caDescriptionController.text,
+              'notes': notesController.text,
             };
             // GlobalState().selectedPriorities = [];
             // GlobalState().selectedCaCategories = [];
