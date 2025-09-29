@@ -26,6 +26,8 @@ class TextAreaWidget extends StatefulWidget {
   final bool? visibleHelperIcon;
   final String? helperText;
   final String? hintText;
+  final int? minLines;
+  final double? height;
 
   final String? initialValue;
 
@@ -53,6 +55,8 @@ class TextAreaWidget extends StatefulWidget {
     this.visibleHelperIcon = false,
     this.helperText,
     this.hintText,
+    this.minLines,
+    this.height,
   });
 
   @override
@@ -60,6 +64,14 @@ class TextAreaWidget extends StatefulWidget {
 }
 
 class _TextAreaWidgetState extends State<TextAreaWidget> {
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -67,109 +79,116 @@ class _TextAreaWidgetState extends State<TextAreaWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: widget.padding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Flexible(
-                child: FieldLableWidget(
-                  lable: widget.lable,
-                  isRequired: widget.isRequired,
-                  visibleHelperIcon: widget.visibleHelperIcon,
-                  helperText: widget.helperText,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 120, // Set fixed height
-            child: TextFormField(
-              //enableInteractiveSelection: false,
-              initialValue: widget.initialValue,
-              cursorColor: widget.cursorColor,
-              showCursor: widget.showCursor,
-              obscureText: widget.obscureText,
-              enabled: widget.enabled,
-              textInputAction: TextInputAction.next,
-              controller: widget.controller,
-              maxLength: widget.maxLength,
-              keyboardType: widget.keyboardType ?? TextInputType.text,
-              maxLines: 6, // ✅ Use fixed lines instead of expands
-              minLines: 6,
-              expands: false,
-              decoration:
-                  widget.decoration ??
-                  InputDecoration(
-                    contentPadding: const EdgeInsets.all(10),
-                    alignLabelWithHint: true,
-                    filled: !widget.enabled!,
-                    fillColor:
-                        widget.borderColor?.withValues(alpha: 0.4) ??
-                        AppColors.appBorderColor.withValues(alpha: 0.4),
-                    hintText:
-                        widget.hintText ??
-                        "Maximum character limit is ${widget.maxLength}",
-                    hintStyle: widget.hintStyle ?? StyleUtility.hintTextStyle,
-                    counterText:
-                        widget.showCounterText
-                            ? widget.counterText ??
-                                "${widget.maxLength - widget.controller!.text.length} characters remaining."
-                            : "",
-                    counterStyle:
-                        widget.counterStyle ??
-                        TextStyle(
-                          fontFamily: 'Roboto',
-                          color: widget.borderColor?.withValues(alpha: 0.4),
-                          fontSize: 10,
-                          fontWeight: FontWeight.normal,
-                        ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(widget.borderRadius),
-                      borderSide: BorderSide(
-                        color: widget.borderColor ?? AppColors.appBorderColor,
-                        width: 1,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(widget.borderRadius),
-                      borderSide: BorderSide(
-                        color: widget.borderColor ?? AppColors.appBorderColor,
-                        width: 1,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: widget.borderColor ?? AppColors.appBorderColor,
-                        width: 1,
-                      ),
-                    ),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Padding(
+        padding: widget.padding,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Flexible(
+                  child: FieldLableWidget(
+                    lable: widget.lable,
+                    isRequired: widget.isRequired,
+                    visibleHelperIcon: widget.visibleHelperIcon,
+                    helperText: widget.helperText,
                   ),
-              onChanged: (value) {
-                if (widget.maxLength == value.length) {
-                  ToastUtility.showErrorMessageFlushBar(
-                    'Maxlength reached!',
-                    context,
-                  );
-                }
-                widget.onChange(value);
-              },
-              autovalidateMode: AutovalidateMode.disabled,
-              validator:
-                  widget.isRequired
-                      ? (value) {
+                ),
+              ],
+            ),
+            SizedBox(
+              height: widget.height, // Set fixed height
+              child: TextFormField(
+                //enableInteractiveSelection: false,
+                initialValue: widget.initialValue,
+                cursorColor: widget.cursorColor,
+                showCursor: widget.showCursor,
+                obscureText: widget.obscureText,
+                enabled: widget.enabled,
+                textInputAction: TextInputAction.next,
+                controller: widget.controller,
+                maxLength: widget.maxLength,
+                keyboardType: widget.keyboardType ?? TextInputType.text,
+                maxLines: 6, // ✅ Use fixed lines instead of expands
+                minLines: widget.minLines,
+                expands: false,
+                decoration:
+                    widget.decoration ??
+                    InputDecoration(
+                      contentPadding: const EdgeInsets.all(10),
+                      alignLabelWithHint: true,
+                      filled: !widget.enabled!,
+                      fillColor:
+                          widget.borderColor?.withValues(alpha: 0.4) ??
+                          AppColors.appBorderColor.withValues(alpha: 0.4),
+                      hintText:
+                          widget.hintText ??
+                          "Maximum character limit is ${widget.maxLength}",
+                      hintStyle: widget.hintStyle ?? StyleUtility.hintTextStyle,
+                      counterText: widget.showCounterText
+                          ? widget.counterText ??
+                                "${widget.maxLength - widget.controller!.text.length} characters remaining."
+                          : "",
+                      counterStyle:
+                          widget.counterStyle ??
+                          TextStyle(
+                            fontFamily: 'Roboto',
+                            color: widget.borderColor?.withValues(alpha: 0.4),
+                            fontSize: 10,
+                            fontWeight: FontWeight.normal,
+                          ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(
+                          widget.borderRadius,
+                        ),
+                        borderSide: BorderSide(
+                          color: widget.borderColor ?? AppColors.appBorderColor,
+                          width: 1,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(
+                          widget.borderRadius,
+                        ),
+                        borderSide: BorderSide(
+                          color: widget.borderColor ?? AppColors.appBorderColor,
+                          width: 1,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: widget.borderColor ?? AppColors.appBorderColor,
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                onChanged: (value) {
+                  if (widget.maxLength == value.length) {
+                    ToastUtility.showErrorMessageFlushBar(
+                      'Maxlength reached!',
+                      context,
+                    );
+                  }
+                  widget.onChange(value);
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: widget.isRequired
+                    ? (value) {
                         if (value == null || value.trim().isEmpty) {
-                          return '';
+                          return " ";
                         }
                         return null;
                       }
-                      : null,
+                    : null,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

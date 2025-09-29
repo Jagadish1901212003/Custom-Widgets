@@ -36,7 +36,7 @@ class TimeFieldWidget extends StatelessWidget {
         readOnly: true,
         // textInputAction: TextInputAction.next,
         controller: timeController,
-        //   autovalidateMode: AutovalidateMode.disabled,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         onTap: () async {
           final TimeOfDay? result = await showTimePicker(
             context: context,
@@ -108,15 +108,14 @@ class TimeFieldWidget extends StatelessWidget {
             borderSide: BorderSide(color: AppColors.appErrorRed, width: 1),
           ),
         ),
-        validator:
-            isRequired!
-                ? (value) {
-                  if (value == null || value.isEmpty) {
-                    return '';
-                  }
-                  return null;
+        validator: isRequired!
+            ? (value) {
+                if (value == null || value.isEmpty) {
+                  return '';
                 }
-                : null,
+                return null;
+              }
+            : null,
       ),
     );
   }

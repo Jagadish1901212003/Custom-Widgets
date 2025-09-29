@@ -26,19 +26,18 @@ class FieldLableWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return visibleHelperIcon!
         ? Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 0, bottom: 0),
-                child: RichText(
-                  text: TextSpan(
-                    text: lable,
-                    style: textStyle ?? StyleUtility.labelTextStyle,
-                    children:
-                        isRequired == true
-                            ? [
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 0, bottom: 0),
+                  child: RichText(
+                    text: TextSpan(
+                      text: lable,
+                      style: textStyle ?? StyleUtility.labelTextStyle,
+                      children: isRequired == true
+                          ? [
                               TextSpan(
                                 text: ' *',
                                 style:
@@ -50,45 +49,44 @@ class FieldLableWidget extends StatelessWidget {
                                     ),
                               ),
                             ]
-                            : [],
+                          : [],
+                    ),
                   ),
                 ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                PopUpDialogUtility.showAlertDialogSystem(
-                  context: context,
-                  popupTitle: 'Instructions',
-                  description: helperText ?? "",
-                );
-              },
-              // icon of the button
-              style: ElevatedButton.styleFrom(
-                //alignment: Alignment.topCenter,
-                minimumSize: Size(15, 15),
-                // styling the button
-                shape: CircleBorder(),
-                padding: EdgeInsets.all(2),
-                backgroundColor: AppColors.appPrimaryColor, // Button color
+              ElevatedButton(
+                onPressed: () {
+                  PopUpDialogUtility.showAlertDialogSystem(
+                    context: context,
+                    popupTitle: 'Instructions',
+                    description: helperText ?? "",
+                  );
+                },
+                // icon of the button
+                style: ElevatedButton.styleFrom(
+                  //alignment: Alignment.topCenter,
+                  minimumSize: Size(15, 15),
+                  // styling the button
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(2),
+                  backgroundColor: AppColors.appPrimaryColor, // Button color
+                ),
+                child: Icon(
+                  Icons.question_mark,
+                  size: 15,
+                  color: AppColors.appWhite,
+                ),
               ),
-              child: Icon(
-                Icons.question_mark,
-                size: 15,
-                color: AppColors.appWhite,
-              ),
-            ),
-          ],
-        )
+            ],
+          )
         : Padding(
-          padding: padding,
-          child: RichText(
-            text: TextSpan(
-              text: lable,
-              style: textStyle ?? StyleUtility.labelTextStyle,
-              children:
-                  isRequired == true
-                      ? [
+            padding: padding,
+            child: RichText(
+              text: TextSpan(
+                text: lable,
+                style: textStyle ?? StyleUtility.labelTextStyle,
+                children: isRequired == true
+                    ? [
                         TextSpan(
                           text: ' *',
                           style:
@@ -100,9 +98,9 @@ class FieldLableWidget extends StatelessWidget {
                               ),
                         ),
                       ]
-                      : [],
+                    : [],
+              ),
             ),
-          ),
-        );
+          );
   }
 }

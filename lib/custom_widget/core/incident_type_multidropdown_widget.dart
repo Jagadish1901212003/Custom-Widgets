@@ -14,13 +14,22 @@ import 'package:provider/provider.dart';
 
 class IncidentTypeMultidropdownWidget extends StatefulWidget {
   final List<DropdownItemModel>? items;
+  final String hintText;
+  final double horizontalMargin;
+  final List<DropdownItemModel> selectedItems;
+  final bool hasError;
+
   final void Function(List<DropdownItemModel>, DropdownItemModel, bool)
   onSelect;
 
   const IncidentTypeMultidropdownWidget({
     super.key,
+    this.selectedItems = const [],
+    this.horizontalMargin = 15,
+    this.hintText = "Select Inspection Type that is most suitable",
     required this.items,
     required this.onSelect,
+    this.hasError = false,
   });
 
   @override
@@ -30,21 +39,42 @@ class IncidentTypeMultidropdownWidget extends StatefulWidget {
 
 class _IncidentTypeMultidropdownWidgetState
     extends State<IncidentTypeMultidropdownWidget> {
+  @override
+  void didUpdateWidget(covariant IncidentTypeMultidropdownWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.selectedItems != oldWidget.selectedItems) {
+      setState(() {
+        selectedIncidentTypes = widget.selectedItems.toList();
+      });
+    }
+  }
+
   List<DropdownItemModel> selectedIncidentTypes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    selectedIncidentTypes = widget.selectedItems.toList();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15),
+      margin: EdgeInsets.symmetric(horizontal: widget.horizontalMargin),
       height: 45,
       child: CustomDropdown<DropdownItemModel>.multiSelect(
+        // initialItems: selectedIncidentTypes,
         closedHeaderPadding: const EdgeInsets.all(8),
         items: widget.items,
         canCloseOutsideBounds: true,
-        hintText: 'Select Incident Type that is most suitable',
+        hintText: widget.hintText,
+
         decoration: CustomDropdownDecoration(
           closedBorderRadius: BorderRadius.circular(5),
-          closedBorder: Border.all(color: AppColors.appBorderColor),
+          closedBorder: Border.all(
+            color: widget.hasError ? Colors.red : AppColors.appBorderColor,
+          ),
           closedFillColor: Colors.transparent,
           hintStyle: StyleUtility.hintTextStyle,
           closedSuffixIcon: const Icon(
@@ -60,6 +90,7 @@ class _IncidentTypeMultidropdownWidgetState
             highlightColor: AppColors.appPrimaryColor,
           ),
         ),
+
         listItemPadding: const EdgeInsets.all(0),
         listItemBuilder: (context, item, isSelected, onItemSelect) {
           return ListTile(
@@ -75,12 +106,11 @@ class _IncidentTypeMultidropdownWidgetState
             //minLeadingWidth: 0,
             minTileHeight: 10,
             //visualDensity: VisualDensity.adaptivePlatformDensity,
-            onTap:
-                () => selectHandler(
-                  onItemSelect,
-                  item,
-                  !isSelected,
-                ), //setting not-selected due to it gvies on select false
+            onTap: () => selectHandler(
+              onItemSelect,
+              item,
+              !isSelected,
+            ), //setting not-selected due to it gvies on select false
             title: Text(
               item.name,
               style: StyleUtility.dropDownItemTextStyle(isSelected),
@@ -88,12 +118,11 @@ class _IncidentTypeMultidropdownWidgetState
             trailing: Checkbox(
               value: isSelected,
               activeColor: AppColors.appPrimaryColor,
-              onChanged:
-                  (checked) => selectHandler(
-                    onItemSelect,
-                    item,
-                    !isSelected,
-                  ), // setting not-selected due to it gvies on select false
+              onChanged: (checked) => selectHandler(
+                onItemSelect,
+                item,
+                !isSelected,
+              ), // setting not-selected due to it gvies on select false
             ),
           );
         },
@@ -126,12 +155,61 @@ class _IncidentTypeMultidropdownWidgetState
             ),
           );
         },
+
         onListChanged: (value) {
           // Navigator.of(context).pop();
           // selectHandler(onItemSelect, item, !isSelected);
+          // setState(() {
+          //   selectedIncidentTypes = value;
+          // });
           print('now I am calling:::::::::::::::');
           //selectedIncidentTypes = value;
         },
+
+        // onListChanged: (value) {
+        // setState(() {
+        //   selectedIncidentTypes = value;
+        // });
+        //   // widget.onSelect(
+        //   //   selectedIncidentTypes /*pass the changed item and bool*/
+        //   // );
+        // },
+        // onListChanged: (List<DropdownItemModel> value) {
+        //   setState(() {
+        //     DropdownItemModel? changedItem;
+        //     bool isSelected = false;
+
+        //     // Find added item: present in new list but not in old list (by value)
+        //     for (var item in value) {
+        //       if (!selectedIncidentTypes.any((e) => e.value == item.value)) {
+        //         changedItem = item;
+        //         isSelected = true;
+        //         break;
+        //       }
+        //     }
+
+        //     // If no added item found, find removed item: present in old list but not in new list
+        //     if (changedItem == null) {
+        //       for (var item in selectedIncidentTypes) {
+        //         if (!value.any((e) => e.value == item.value)) {
+        //           changedItem = item;
+        //           isSelected = false;
+        //           break;
+        //         }
+        //       }
+        //     }
+
+        //     // Update selectedIncidentTypes with new list
+        //     selectedIncidentTypes = value;
+
+        //     if (changedItem != null) {
+        //       widget.onSelect(selectedIncidentTypes, changedItem, isSelected);
+        //     } else {
+        //       // Optional fallback if you want to call onSelect anyway:
+        //       // widget.onSelect(selectedIncidentTypes, DropdownItemModel(id: -1, name: '', value: -1), true);
+        //     }
+        //   });
+        // },
       ),
     );
   }
@@ -166,7 +244,7 @@ class _IncidentTypeMultidropdownWidgetState
                   // print('I am calling 1.....${selectedItems.length}');
                   print('I am calling 2.....${selectedIncidentTypes.length}');
 
-                  //when person involved selected in basic details and we removing incident type related to involved person then person should be removed or updated
+                  //when person involved selected in basic details and we removing inspection type related to involved person then person should be removed or updated
                   _removeInvolvedPerson(option);
 
                   //clear global data of selected removed tab
@@ -198,7 +276,7 @@ class _IncidentTypeMultidropdownWidgetState
     bool isSelected,
   ) async {
     print("Calling select handler:::::::::::::::::");
-    //add incident type in the list
+    //add inspection type in the list
     if (isSelected) {
       // if (selectedIncidentTypes
       //     .map((type) => type.value)
@@ -208,7 +286,7 @@ class _IncidentTypeMultidropdownWidgetState
       //     context: context,
       //     popupTitle: 'Warning',
       //     description:
-      //         "You are not allowed to select any other incident type when 'Near Miss' is chosen.",
+      //         "You are not allowed to select any other inspection type when 'Near Miss' is chosen.",
       //   );
       // } else
 
@@ -220,7 +298,7 @@ class _IncidentTypeMultidropdownWidgetState
           context: context,
           popupTitle: 'Warning',
           description:
-              "You are not allowed to select any other incident type when 'Hazard ID' is chosen.",
+              "You are not allowed to select any other inspection type when 'Hazard ID' is chosen.",
         );
       } else {
         if (selectedIncidentTypes.isNotEmpty) {
@@ -231,7 +309,7 @@ class _IncidentTypeMultidropdownWidgetState
           //     context: context,
           //     popupTitle: 'Warning',
           //     description:
-          //         "'Near Miss' cannot be selected in combination with other incident types.",
+          //         "'Near Miss' cannot be selected in combination with other inspection types.",
           //   );
           // } else
 
@@ -241,7 +319,7 @@ class _IncidentTypeMultidropdownWidgetState
               context: context,
               popupTitle: 'Warning',
               description:
-                  "'Hazard ID' cannot be selected in combination with other incident types.",
+                  "'Hazard ID' cannot be selected in combination with other inspection types.",
             );
           } else {
             //   isSubmitBtnHit.value = false;
@@ -278,7 +356,7 @@ class _IncidentTypeMultidropdownWidgetState
           );
           widget.onSelect(selectedIncidentTypes, selectedType, false);
 
-          //when person involved selected in basic details and we removing incident type related to involved person then person should be removed or updated
+          //when person involved selected in basic details and we removing inspection type related to involved person then person should be removed or updated
           _removeInvolvedPerson(selectedType);
         },
       );
@@ -287,7 +365,7 @@ class _IncidentTypeMultidropdownWidgetState
 
   //INCTY
 
-  //remove person involved as from person list on remove related incident type
+  //remove person involved as from person list on remove related inspection type
   _removeInvolvedPerson(DropdownItemModel incidentType) {
     print('calling.........');
     if (incidentType.value == IncidentType.injuryIllnessId) {
@@ -305,11 +383,10 @@ class _IncidentTypeMultidropdownWidgetState
     int incidentTypeId,
   ) async {
     //person list
-    List<Person> person =
-        Provider.of<PersonInvolvedProvider>(
-          context,
-          listen: false,
-        ).involvedPersons;
+    List<Person> person = Provider.of<PersonInvolvedProvider>(
+      context,
+      listen: false,
+    ).involvedPersons;
 
     //iterate main person list
     for (int i = 0; i < person.length; i++) {
@@ -389,4 +466,56 @@ class _IncidentTypeMultidropdownWidgetState
     //     break;
     // }
   }
+}
+
+// mine (so that multidropdownwidget also get used for form validation)
+class IncidentTypeFormField extends FormField<List<DropdownItemModel>> {
+  IncidentTypeFormField({
+    super.key,
+    required List<DropdownItemModel> selectedItems,
+    required List<DropdownItemModel> items,
+    required String hintText,
+    required void Function(List<DropdownItemModel>, DropdownItemModel, bool)
+    onSelect,
+    double horizontalMargin = 15,
+    bool isRequired = false,
+  }) : super(
+         initialValue: selectedItems,
+         validator: (value) {
+           if (isRequired && (value == null || value.isEmpty)) {
+             return 'This field is required';
+           }
+           return null;
+         },
+         builder: (FormFieldState<List<DropdownItemModel>> state) {
+           return Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+               IncidentTypeMultidropdownWidget(
+                 selectedItems: state.value ?? [],
+                 items: items,
+                 hintText: hintText,
+                 horizontalMargin: horizontalMargin,
+                 hasError: state.hasError, // pass this
+                 onSelect: (selected, changedItem, isSelected) {
+                   state.didChange(selected);
+                   onSelect(selected, changedItem, isSelected);
+                 },
+               ),
+
+               //  if (state.hasError)
+               //    Padding(
+               //      padding: EdgeInsets.symmetric(
+               //        horizontal: horizontalMargin,
+               //        vertical: 5,
+               //      ),
+               //      child: Text(
+               //        state.errorText!,
+               //        style: TextStyle(color: Colors.red, fontSize: 12),
+               //      ),
+               //    ),
+             ],
+           );
+         },
+       );
 }

@@ -6,7 +6,16 @@ import 'package:custom_widgets/model/incident_details_model.dart';
 class GlobalState {
   static final GlobalState _instance = GlobalState._internal();
 
-  List<DropdownItemModel> selectedIncidentTypes = [];
+  List<DropdownItemModel> selectedInspectionType = [];
+  List<DropdownItemModel> selectedSiteType = [];
+    List<DropdownItemModel> selectedConstructionStatus = [];
+
+  List<DropdownItemModel> selectedWeatherStatus = [];
+  List<DropdownItemModel> selectedWindType = [];
+  List<DropdownItemModel> selectedGroundCondition = [];
+  List<DropdownItemModel> selectedPriorities = [];
+  List<DropdownItemModel> selectedCaCategories = [];
+  List<DropdownItemModel> selectedStatuses = [];
 
   //1. Incident Details tab
   IncidentDetailsModel incidentDetails = IncidentDetailsModel(

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class StyleUtility {
   static const TextStyle appBarTextStyle = TextStyle(
     fontFamily: 'Roboto',
-    fontSize: 16,
+    // fontSize: 16,
+    fontSize: 18,
+
     color: AppColors.appTextIconColor,
     fontWeight: FontWeight.bold,
   );

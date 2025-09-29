@@ -37,7 +37,7 @@ class EmptyAttachmentWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8.0),
         decoration: const BoxDecoration(
-          color: Color.fromRGBO(238, 242, 241, 1),
+          color: Color.fromRGBO(253, 253, 253, 1),
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
         child: Icon(Icons.upload, size: 40, color: Colors.blue),

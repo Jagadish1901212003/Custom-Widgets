@@ -745,13 +745,13 @@ class PopUpDialogUtility {
                             ),
                             TextSpan(
                               text:
-                                  '''From the drop-down list at the top of the screen, select the appropriate type(s) of OHS incident that you are reporting. Please select all that apply and complete each tab as fully as possible. Note that if you are reporting a Near Miss or Hazard ID incident type, you will not be able to select any other incident types without first unselecting the Near Miss or Hazard ID option.If you are entering an incident on behalf of someone else, select that option at the top of the Incident Details tab. You can then record the name of the person you are entering on behalf of as the “Reporting Person.” Your name will be automatically recorded as the person entering the incident.
+                                  '''From the drop-down list at the top of the screen, select the appropriate type(s) of OHS incident that you are reporting. Please select all that apply and complete each tab as fully as possible. Note that if you are reporting a Near Miss or Hazard ID inspection type, you will not be able to select any other inspection types without first unselecting the Near Miss or Hazard ID option.If you are entering an incident on behalf of someone else, select that option at the top of the Incident Details tab. You can then record the name of the person you are entering on behalf of as the “Reporting Person.” Your name will be automatically recorded as the person entering the incident.
 
-The Incident Details tab is required for all incident types; however, depending on the type(s) of incident you have selected, additional information may be required on other tabs. Please ensure the completion of all required fields for the incident type(s) you have selected before submitting your incident report.
+The Incident Details tab is required for all inspection types; however, depending on the type(s) of incident you have selected, additional information may be required on other tabs. Please ensure the completion of all required fields for the inspection type(s) you have selected before submitting your incident report.
 
 You may save a draft of the report without submitting it by clicking the “Draft” button. You are encouraged to submit an incident report as soon as possible following an incident. Data entry has been minimized as much as possible by pulling from SuccessFactors and Holman to auto-populate additional information fields from what is currently in the GoA’s master data. In addition, data entered on the Incident Details will be carried forward to other pages when needed (e.g., names of injured people). If the information populated from SuccessFactors is incorrect, please talk to your HRBP for assistance in correcting it. If the vehicle information is incorrect, contact Fleet Management.
 
-Information entered in the Incident Details tab is required for the use of two of the incident type tabs:
+Information entered in the Incident Details tab is required for the use of two of the inspection type tabs:
 
 A driver / operator must be identified in the People section to access the entry fields in Motor Vehicle / Mobile Equipment.
 At least one affected / injured person must be identified in the People section to access the entry fields in Workplace Injury / Illnesses. Each person identified will have a separate tab in Workplace Injury / Illness to enter their injury and/or illness details.\n\n''',
@@ -773,7 +773,7 @@ At least one affected / injured person must be identified in the People section 
                             ),
                             TextSpan(
                               text:
-                                  '''For damage to parked GoA vehicles resulting from an environmental or third-party cause (fire, flood, vandalism, etc.) where there is no driver to identify, use Property Damage rather than Motor Vehicle / Mobile Equipment as the incident type. This will capture the required information without requiring irrelevant details such as driving conditions.
+                                  '''For damage to parked GoA vehicles resulting from an environmental or third-party cause (fire, flood, vandalism, etc.) where there is no driver to identify, use Property Damage rather than Motor Vehicle / Mobile Equipment as the inspection type. This will capture the required information without requiring irrelevant details such as driving conditions.
 
 SuccessFactors isn’t always current when identifying your current supervisor. The field “Supervisor at time of incident” can be used to enter your current supervisor. It will default to what is currently in 1GX and can be overwritten when needed. The person identified in this field will receive a notification to complete the initial incident review and, in most cases, the investigation of the incident. Your supervisor and managers listed in 1GX will also have access to the incident report details, as will your OHS Consultant.\n\n''',
                               style: TextStyle(

@@ -188,7 +188,7 @@ class _PersonInvolvedAsMultiDropWidgetNewState
   void updateDisabled() {
     disabled.clear();
     final selectedIncidentTypeValues =
-        GlobalState().selectedIncidentTypes.map((e) => e.value).toList();
+        GlobalState().selectedInspectionType.map((e) => e.value).toList();
 
     if (!selectedIncidentTypeValues.contains(
       IncidentType.motorVehicleAccidentId,
@@ -265,7 +265,7 @@ class _PersonInvolvedAsMultiDropWidgetNewState
     if (isSelected) {
       //for driver
       if (selectedType.value == PersonType.driverId) {
-        if (GlobalState().selectedIncidentTypes
+        if (GlobalState().selectedInspectionType
             .map((type) => type.value)
             .toList()
             .contains(IncidentType.motorVehicleAccidentId)) {
@@ -278,7 +278,7 @@ class _PersonInvolvedAsMultiDropWidgetNewState
       }
       //for Injury / Illness
       else if (selectedType.value == PersonType.injuredId) {
-        if (GlobalState().selectedIncidentTypes
+        if (GlobalState().selectedInspectionType
             .map((type) => type.value)
             .toList()
             .contains(IncidentType.injuryIllnessId)) {
@@ -291,7 +291,7 @@ class _PersonInvolvedAsMultiDropWidgetNewState
       }
       //First Aider Equipment
       else if (selectedType.value == PersonType.firstAiderId) {
-        if (GlobalState().selectedIncidentTypes
+        if (GlobalState().selectedInspectionType
             .map((type) => type.value)
             .toList()
             .contains(IncidentType.injuryIllnessId)) {
@@ -307,7 +307,7 @@ class _PersonInvolvedAsMultiDropWidgetNewState
         widget.onSelect(personInvolvedAs, selectedType, isSelected);
       }
     } else {
-      //remove incident type from the list
+      //remove inspection type from the list
       await PopUpDialogUtility.showAlertDialog(
         context: context,
         popupTitle: 'Warning',
@@ -327,11 +327,11 @@ class _PersonInvolvedAsMultiDropWidgetNewState
     var textMessage = "";
     if (PersonType.driverId == type.value) {
       textMessage =
-          "Please select incident type Motor Vehicle/Mobile Equipment";
+          "Please select inspection type Motor Vehicle/Mobile Equipment";
     } else if (PersonType.injuredId == type.value) {
-      textMessage = "Please select incident type Workplace Injury/Illness";
+      textMessage = "Please select inspection type Workplace Injury/Illness";
     } else if (PersonType.firstAiderId == type.value) {
-      textMessage = "Please select incident type Workplace Injury/Illness";
+      textMessage = "Please select inspection type Workplace Injury/Illness";
     }
 
     await PopUpDialogUtility.showAlertDialogSystem(

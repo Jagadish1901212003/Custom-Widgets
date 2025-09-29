@@ -3,7 +3,7 @@ enum DateType {
   dateTime,
 }
 
-enum ButtonType { save, submit, add, update, confirm, cancel, delete, close }
+enum ButtonType { save, submit, add, update, confirm, cancel, delete, close, next }
 
 enum RadioType {
   horizontal,

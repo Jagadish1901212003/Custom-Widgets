@@ -6,19 +6,21 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool clearBtnVisible;
   final void Function() onClear;
+  final bool centerTitle;
 
   const CommonAppBar({
     super.key,
     required this.title,
     this.clearBtnVisible = true,
     required this.onClear,
+    this.centerTitle = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.appSecondaryColor,
-      centerTitle: false,
+      centerTitle: centerTitle,
       elevation: 0.5,
       titleSpacing: 0.0,
       leading: IconButton(

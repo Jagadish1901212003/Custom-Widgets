@@ -28,7 +28,7 @@ class InitialPlaceholderWidget extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(top: 8),
               child: const Text(
-                "To report incident please select incident type.",
+                "To report incident please select inspection type.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Roboto',
