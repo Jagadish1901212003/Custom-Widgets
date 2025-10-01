@@ -11,11 +11,13 @@ import 'package:custom_widgets/custom_widget/core/text_area_widget.dart';
 import 'package:custom_widgets/custom_widget/core/time_field_widget.dart';
 import 'package:custom_widgets/model/dropdown_item_model.dart';
 import 'package:custom_widgets/model/employee_model.dart';
+import 'package:custom_widgets/utility/app_colors.dart';
 import 'package:custom_widgets/utility/enum.dart';
 import 'package:custom_widgets/utility/global_tabs.dart';
 import 'package:custom_widgets/utility/pop_up_dialog_utility.dart';
-import 'package:custom_widgets/view/Screens/attachment%20_section_for_radio_btn.dart';
+import 'package:custom_widgets/view/Screens/NA%20attachment%20_section_for_radio_btn.dart';
 import 'package:custom_widgets/view/Screens/ca_description_screen.dart';
+import 'package:custom_widgets/view/Screens/document_and_photo_upload_widget.dart';
 import 'package:custom_widgets/view/Screens/search_employee_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -43,6 +45,89 @@ class InspectionTabInCustomTabBarScreen extends StatefulWidget {
 
 class InspectionTabInCustomTabBarScreenState
     extends State<InspectionTabInCustomTabBarScreen> {
+  // Question 1
+  final String waterManagementQ1DocumentsKey = "waterManagement_q1_documents";
+  final String waterManagementQ1PhotosKey = "waterManagement_q1_photos";
+
+  // Question 2
+  final String waterManagementQ2DocumentsKey = "waterManagement_q2_documents";
+  final String waterManagementQ2PhotosKey = "waterManagement_q2_photos";
+
+  // Question 3
+  final String waterManagementQ3DocumentsKey = "waterManagement_q3_documents";
+  final String waterManagementQ3PhotosKey = "waterManagement_q3_photos";
+
+  // Question 4
+  final String waterManagementQ4DocumentsKey = "waterManagement_q4_documents";
+  final String waterManagementQ4PhotosKey = "waterManagement_q4_photos";
+
+  // Question 5
+  final String waterManagementQ5DocumentsKey = "waterManagement_q5_documents";
+  final String waterManagementQ5PhotosKey = "waterManagement_q5_photos";
+
+  // Question 6
+  final String waterManagementQ6DocumentsKey = "waterManagement_q6_documents";
+  final String waterManagementQ6PhotosKey = "waterManagement_q6_photos";
+
+  // Question 7
+  final String waterManagementQ7DocumentsKey = "waterManagement_q7_documents";
+  final String waterManagementQ7PhotosKey = "waterManagement_q7_photos";
+
+  // Question 8
+  final String waterManagementQ8DocumentsKey = "waterManagement_q8_documents";
+  final String waterManagementQ8PhotosKey = "waterManagement_q8_photos";
+
+  // Question 1
+  final String siteConditionsQ1DocumentsKey = "siteConditions_q1_documents";
+  final String siteConditionsQ1PhotosKey = "siteConditions_q1_photos";
+
+  // Question 2
+  final String siteConditionsQ2DocumentsKey = "siteConditions_q2_documents";
+  final String siteConditionsQ2PhotosKey = "siteConditions_q2_photos";
+
+  // Question 3
+  final String siteConditionsQ3DocumentsKey = "siteConditions_q3_documents";
+  final String siteConditionsQ3PhotosKey = "siteConditions_q3_photos";
+
+  // Unique storage keys
+  // Question 1
+  final String screen1Q1DocumentsKey = "screen1_q1_documents";
+  final String screen1Q1PhotosKey = "screen1_q1_photos";
+
+  // Question 2
+  final String screen1Q2DocumentsKey = "screen1_q2_documents";
+  final String screen1Q2PhotosKey = "screen1_q2_photos";
+
+  // Question 3
+  final String screen1Q3DocumentsKey = "screen1_q3_documents";
+  final String screen1Q3PhotosKey = "screen1_q3_photos";
+
+  // Question 4
+  final String screen1Q4DocumentsKey = "screen1_q4_documents";
+  final String screen1Q4PhotosKey = "screen1_q4_photos";
+
+  // Question 5
+  final String screen1Q5DocumentsKey = "screen1_q5_documents";
+  final String screen1Q5PhotosKey = "screen1_q5_photos";
+
+  // Question 6
+  final String screen1Q6DocumentsKey = "screen1_q6_documents";
+  final String screen1Q6PhotosKey = "screen1_q6_photos";
+
+  // Question 7
+  final String screen1Q7DocumentsKey = "screen1_q7_documents";
+  final String screen1Q7PhotosKey = "screen1_q7_photos";
+
+  // Question 8
+  final String screen1Q8DocumentsKey = "screen1_q8_documents";
+  final String screen1Q8PhotosKey = "screen1_q8_photos";
+
+  // Question 9
+  final String screen1Q9DocumentsKey = "screen1_q9_documents";
+  final String screen1Q9PhotosKey = "screen1_q9_photos";
+
+  List<DropdownItemModel> selectedItemsOnsite = [];
+
   // ---------------- Site Conditions & Housekeeping ----------------
   List<File> housekeepingQ1Docs = [];
   List<File> housekeepingQ1Photos = [];
@@ -97,6 +182,8 @@ class InspectionTabInCustomTabBarScreenState
   DropdownItemModel? selectedWind;
   DropdownItemModel? selectedGroundCondition;
   DropdownItemModel? selectedConstructionStatus;
+
+  DropdownItemModel? selectedEnvironmentalIncident;
 
   List<Map<String, String>> pidList = [];
   // Selected value variable
@@ -228,6 +315,16 @@ class InspectionTabInCustomTabBarScreenState
     DropdownItemModel(id: 2, name: "High", value: 2),
     DropdownItemModel(id: 3, name: "Light", value: 3),
     DropdownItemModel(id: 4, name: "Moderate", value: 4),
+  ];
+
+  List<DropdownItemModel> environmentalIncidentItems = [
+    DropdownItemModel(id: 1, name: "Administrative Control", value: 1),
+    DropdownItemModel(id: 2, name: "Archeology", value: 2),
+    DropdownItemModel(id: 3, name: "Erosion and Sediment Control", value: 3),
+    DropdownItemModel(id: 4, name: "Fuel and Oil Management", value: 4),
+    DropdownItemModel(id: 5, name: "Other", value: 5),
+    DropdownItemModel(id: 6, name: "Waste Management", value: 6),
+    DropdownItemModel(id: 7, name: "Wildlife", value: 7),
   ];
 
   final List<DropdownItemModel> environmentalSiteRadioBtn1 = [
@@ -650,8 +747,8 @@ class InspectionTabInCustomTabBarScreenState
   final TextEditingController siteConditionsHousekeepingController3 =
       TextEditingController();
 
-  DropdownItemModel? _selectedPropertyReviewTypeType;
-  DropdownItemModel? _selectedPropertyZoning;
+  DropdownItemModel? selectedPropertyReviewTypeType;
+  DropdownItemModel? selectedPropertyZoning;
 
   DropdownItemModel? _selectedPropertyUse;
 
@@ -682,12 +779,12 @@ class InspectionTabInCustomTabBarScreenState
 
   void isAddEnable(DropdownItemModel? selected) {
     isAddEnabled = false;
-    if (selected == _selectedPropertyReviewTypeType) {
-      if (_selectedPropertyReviewTypeType != null) {
+    if (selected == selectedPropertyReviewTypeType) {
+      if (selectedPropertyReviewTypeType != null) {
         isAddEnabled = true;
       }
-    } else if (selected == _selectedPropertyZoning) {
-      if (_selectedPropertyZoning != null) {
+    } else if (selected == selectedPropertyZoning) {
+      if (selectedPropertyZoning != null) {
         isAddEnabled = true;
       }
     }
@@ -796,398 +893,402 @@ class InspectionTabInCustomTabBarScreenState
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 16,
+                  vertical: 3,
+                  horizontal: 15,
                 ),
-                child: Card(
-                  color: Colors.white,
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(15),
                   ),
+                  // color: Colors.white,
+                  // elevation: 4,
+                  // shape: RoundedRectangleBorder(
+                  //   borderRadius: BorderRadius.circular(8),
+                  // ),
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.only(
+                      top: 5,
+                      bottom: 10,
+                      right: 16,
+                      left: 16,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              (widget.selectedInspectionType?.name !=
-                                      "Property Review")
-                                  ? TextAreaWidget(
-                                      padding: EdgeInsets.all(0),
-                                      minLines: 2,
-                                      height: 50,
-                                      isRequired: true,
-                                      // keyboardType: TextInputType.number,
-                                      hintText: "Maximum charcter limit is 100",
-                                      controller: siteNameController,
-                                      lable: "Site Name",
-                                      onChange: (value) {},
-                                    )
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const FieldLableWidget(
-                                          // padding: EdgeInsets.only(left: 15),
-                                          lable: "Property Review Type",
-                                          isRequired: true,
+                        // Padding(
+                        // padding: const EdgeInsets.only(left: 0, right: 00),
+                        // child:
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            (widget.selectedInspectionType?.name !=
+                                    "Property Review")
+                                ? TextAreaWidget(
+                                    padding: EdgeInsets.all(0),
+                                    minLines: 2,
+                                    height: 60,
+                                    isRequired: true,
+                                    // keyboardType: TextInputType.number,
+                                    hintText: "Maximum charcter limit is 100",
+                                    controller: siteNameController,
+                                    lable: "Site Name",
+                                    onChange: (value) {},
+                                  )
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const FieldLableWidget(
+                                        // padding: EdgeInsets.only(left: 15),
+                                        lable: "Property Review Type",
+                                        isRequired: true,
+                                      ),
+                                      DropdownListWidget(
+                                        hintText: "Property Review Type",
+                                        // selected: ,
+                                        margin: EdgeInsets.symmetric(
+                                          horizontal: 0,
+                                          vertical: 0,
                                         ),
-                                        DropdownListWidget(
-                                          hintText: "Property Review Type",
+                                        selected:
+                                            selectedPropertyReviewTypeType,
+
+                                        isRequired: true,
+                                        // margin: const EdgeInsets.all(0),
+                                        items: propertyReviewType,
+                                        onChange: (value) async {
+                                          selectedPropertyReviewTypeType =
+                                              value;
+                                          // isAddEnable(
+                                          //   selectedPropertyReviewTypeType,
+                                          // );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                            if (widget.selectedInspectionType?.name !=
+                                "Property Review")
+                              const FieldLableWidget(
+                                lable: "Inspection Date",
+                                isRequired: true,
+                              ),
+                            if (widget.selectedInspectionType?.name !=
+                                "Property Review")
+                              DateTimeFieldWidget(
+                                key: Key(DateTime.now().toString()),
+                                isRequired: true,
+                                selectedDate: _globalState
+                                    .incidentDetails
+                                    .basicDetailsModel
+                                    ?.incidentDate,
+                                dateController: dateOfEventController,
+                                type: DateType.date,
+                                onDateSelect: (date) {
+                                  // timeOfEventController.clear();
+
+                                  dateOfEventController.text = DateFormat(
+                                    'MMM dd, yyyy',
+                                  ).format(date);
+                                  setState(() {});
+                                },
+                              ),
+                            if (widget.selectedInspectionType?.name !=
+                                "Property Review")
+                              const FieldLableWidget(
+                                lable: "Inspection Time",
+                                isRequired: true,
+                              ),
+                            if (widget.selectedInspectionType?.name !=
+                                "Property Review")
+                              TimeFieldWidget(
+                                isRequired: true,
+                                timeController: timeOfEventController,
+                                hintText: 'Select time',
+                                onTimeSelect: (time) async {
+                                  timeOfEventController.text = time;
+                                },
+                              ),
+
+                            (widget.selectedInspectionType?.name !=
+                                    "Property Review")
+                                ? (widget.selectedInspectionType?.name !=
+                                              "ESC Inspection" &&
+                                          widget.selectedInspectionType?.name !=
+                                              "Sample Collection")
+                                      ? FieldLableWidget(
+                                          lable: "Site Type",
+                                          isRequired:
+                                              (widget
+                                                      .selectedInspectionType
+                                                      ?.name !=
+                                                  "Environmental Site Evaluation")
+                                              ? false
+                                              : true,
+                                        )
+                                      : FieldLableWidget(
+                                          lable: "Construction Status",
+                                          isRequired:
+                                              (widget
+                                                      .selectedInspectionType
+                                                      ?.name ==
+                                                  "Sample Collection")
+                                              ? true
+                                              : false,
+                                        )
+                                : const SizedBox.shrink(), // renders nothing if name == "Property Review"
+
+                            (widget.selectedInspectionType?.name !=
+                                    "Property Review")
+                                ? (widget.selectedInspectionType?.name !=
+                                              "ESC Inspection" &&
+                                          widget.selectedInspectionType?.name !=
+                                              "Sample Collection")
+                                      ? DropdownListWidget(
                                           // selected: ,
                                           margin: EdgeInsets.symmetric(
-                                            horizontal: 0,
-                                            vertical: 0,
+                                            // horizontal: 15,
                                           ),
-                                          selected:
-                                              _selectedPropertyReviewTypeType,
+                                          selected: selectedSiteType,
 
-                                          isRequired: true,
+                                          isRequired: false,
                                           // margin: const EdgeInsets.all(0),
-                                          items: propertyReviewType,
+                                          items: siteTypes,
+
+                                          // },
                                           onChange: (value) async {
-                                            _selectedPropertyReviewTypeType =
-                                                value;
-                                            // isAddEnable(
-                                            //   _selectedPropertyReviewTypeType,
-                                            // );
+                                            selectedSiteType = value;
+                                            // isAddEnable();
                                           },
-                                        ),
-                                      ],
-                                    ),
-                              if (widget.selectedInspectionType?.name !=
-                                  "Property Review")
-                                const FieldLableWidget(
-                                  lable: "Inspection Date",
-                                  isRequired: true,
-                                ),
-                              if (widget.selectedInspectionType?.name !=
-                                  "Property Review")
-                                DateTimeFieldWidget(
-                                  key: Key(DateTime.now().toString()),
-                                  isRequired: true,
-                                  selectedDate: _globalState
-                                      .incidentDetails
-                                      .basicDetailsModel
-                                      ?.incidentDate,
-                                  dateController: dateOfEventController,
-                                  type: DateType.date,
-                                  onDateSelect: (date) {
-                                    // timeOfEventController.clear();
+                                        )
+                                      : DropdownListWidget(
+                                          // selected: ,
+                                          margin: EdgeInsets.symmetric(
+                                            // horizontal: 15,
+                                          ),
+                                          selected: selectedConstructionStatus,
 
-                                    dateOfEventController.text = DateFormat(
-                                      'MMM dd, yyyy',
-                                    ).format(date);
-                                    setState(() {});
-                                  },
-                                ),
-                              if (widget.selectedInspectionType?.name !=
-                                  "Property Review")
-                                const FieldLableWidget(
-                                  lable: "Inspection Time",
-                                  isRequired: true,
-                                ),
-                              if (widget.selectedInspectionType?.name !=
-                                  "Property Review")
-                                TimeFieldWidget(
-                                  isRequired: true,
-                                  timeController: timeOfEventController,
-                                  hintText: 'Select time',
-                                  onTimeSelect: (time) async {
-                                    timeOfEventController.text = time;
-                                  },
-                                ),
+                                          isRequired: false,
+                                          // margin: const EdgeInsets.all(0),
+                                          items: constructionStatus,
 
-                              (widget.selectedInspectionType?.name !=
-                                      "Property Review")
-                                  ? (widget.selectedInspectionType?.name !=
-                                                "ESC Inspection" &&
-                                            widget
-                                                    .selectedInspectionType
-                                                    ?.name !=
-                                                "Sample Collection")
-                                        ? FieldLableWidget(
-                                            lable: "Site Type",
-                                            isRequired:
-                                                (widget
-                                                        .selectedInspectionType
-                                                        ?.name !=
-                                                    "Environmental Site Evaluation")
-                                                ? false
-                                                : true,
-                                          )
-                                        : FieldLableWidget(
-                                            lable: "Construction Status",
-                                            isRequired:
-                                                (widget
-                                                        .selectedInspectionType
-                                                        ?.name ==
-                                                    "Sample Collection")
-                                                ? true
-                                                : false,
-                                          )
-                                  : const SizedBox.shrink(), // renders nothing if name == "Property Review"
+                                          // },
+                                          onChange: (value) async {
+                                            selectedConstructionStatus = value;
+                                            // isAddEnable();
+                                          },
+                                        )
+                                : const SizedBox.shrink(),
 
-                              (widget.selectedInspectionType?.name !=
-                                      "Property Review")
-                                  ? (widget.selectedInspectionType?.name !=
-                                                "ESC Inspection" &&
-                                            widget
-                                                    .selectedInspectionType
-                                                    ?.name !=
-                                                "Sample Collection")
-                                        ? DropdownListWidget(
-                                            // selected: ,
-                                            margin: EdgeInsets.symmetric(
-                                              // horizontal: 15,
-                                            ),
-                                            selected: selectedSiteType,
-
-                                            isRequired: false,
-                                            // margin: const EdgeInsets.all(0),
-                                            items: siteTypes,
-
-                                            // },
-                                            onChange: (value) async {
-                                              selectedSiteType = value;
-                                              // isAddEnable();
-                                            },
-                                          )
-                                        : DropdownListWidget(
-                                            // selected: ,
-                                            margin: EdgeInsets.symmetric(
-                                              // horizontal: 15,
-                                            ),
-                                            selected:
-                                                selectedConstructionStatus,
-
-                                            isRequired: false,
-                                            // margin: const EdgeInsets.all(0),
-                                            items: constructionStatus,
-
-                                            // },
-                                            onChange: (value) async {
-                                              selectedConstructionStatus =
-                                                  value;
-                                              // isAddEnable();
-                                            },
-                                          )
-                                  : const SizedBox.shrink(),
-
-                              if (widget.selectedInspectionType?.name !=
-                                      "Environmental Site Evaluation" &&
-                                  widget.selectedInspectionType?.name !=
-                                      "Property Review")
-                                const FieldLableWidget(
-                                  lable: "Weather Status",
-                                  isRequired: false,
-                                ),
-
-                              if (widget.selectedInspectionType?.name !=
-                                      "Environmental Site Evaluation" &&
-                                  widget.selectedInspectionType?.name !=
-                                      "Property Review")
-                                DropdownListWidget(
-                                  margin: EdgeInsets.symmetric(
-                                    // horizontal: 15
-                                  ),
-                                  selected: selectedWeatherStatus,
-
-                                  isRequired: false,
-                                  items: weatherStatus,
-                                  onChange: (value) async {
-                                    selectedWeatherStatus = value;
-                                    // isAddEnable();
-                                  },
-                                ),
-
-                              // Temperature
-                              if (widget.selectedInspectionType?.name !=
-                                      "Property Review" &&
-                                  widget.selectedInspectionType?.name !=
-                                      "Environmental Site Evaluation")
-                                TextAreaWidget(
-                                  minLines: 1,
-                                  height: 50,
-                                  isRequired: false,
-                                  keyboardType: TextInputType.number,
-                                  hintText: "°Celsius",
-                                  controller: temperatureController,
-                                  lable: "Temperature",
-                                  onChange: (value) {},
-                                ),
-
-                              // Site Activity
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (widget.selectedInspectionType?.name ==
-                                      "Sample Collection") ...[
-                                    const FieldLableWidget(
-                                      lable: "Site Activity",
-                                    ),
-                                    MultiSelectDropDown(
-                                      margin: const EdgeInsets.all(0),
-                                      searchEnabled: false,
-                                      selected:
-                                          const [], //[emissionType.first],
-                                      hintText: 'Site Activity',
-                                      items: siteActivityDropdownItems,
-                                      onCheck: (value, isSelected) {},
-                                      onChange: (value) {},
-                                    ),
-
-                                    // Sample Type
-                                    const FieldLableWidget(
-                                      lable: "Sample Type ",
-                                    ),
-                                    MultiSelectDropDown(
-                                      margin: const EdgeInsets.all(0),
-                                      searchEnabled: false,
-                                      selected:
-                                          const [], //[emissionType.first],
-                                      hintText: 'Sample Type',
-                                      items: sampleTypeDropdownItems,
-                                      onCheck: (value, isSelected) {},
-                                      onChange: (value) {},
-                                    ),
-                                  ],
-                                ],
+                            if (widget.selectedInspectionType?.name !=
+                                    "Environmental Site Evaluation" &&
+                                widget.selectedInspectionType?.name !=
+                                    "Property Review")
+                              const FieldLableWidget(
+                                lable: "Weather Status",
+                                isRequired: false,
                               ),
 
-                              // wind
-                              if (widget.selectedInspectionType?.name !=
-                                      "Environmental Site Evaluation" &&
-                                  widget.selectedInspectionType?.name !=
-                                      "Property Review" &&
-                                  widget.selectedInspectionType?.name !=
-                                      "Sample Collection")
-                                const FieldLableWidget(
-                                  lable: "Wind",
-                                  isRequired: false,
+                            if (widget.selectedInspectionType?.name !=
+                                    "Environmental Site Evaluation" &&
+                                widget.selectedInspectionType?.name !=
+                                    "Property Review")
+                              DropdownListWidget(
+                                margin: EdgeInsets.symmetric(
+                                  // horizontal: 15
                                 ),
+                                selected: selectedWeatherStatus,
 
-                              if (widget.selectedInspectionType?.name !=
-                                      "Environmental Site Evaluation" &&
-                                  widget.selectedInspectionType?.name !=
-                                      "Property Review" &&
-                                  widget.selectedInspectionType?.name !=
-                                      "Sample Collection")
-                                DropdownListWidget(
-                                  margin: EdgeInsets.symmetric(
-                                    // horizontal: 15
-                                  ),
-                                  selected: selectedWind,
+                                isRequired: false,
+                                items: weatherStatus,
+                                onChange: (value) async {
+                                  selectedWeatherStatus = value;
+                                  // isAddEnable();
+                                },
+                              ),
 
-                                  isRequired: false,
-                                  items: wind,
-                                  onChange: (value) async {
-                                    selectedWind = value;
-                                    // isAddEnable();
-                                  },
-                                ),
-
-                              // Ground Condition
-                              if (widget.selectedInspectionType?.name !=
-                                      "Environmental Site Evaluation" &&
-                                  widget.selectedInspectionType?.name !=
-                                      "Property Review")
-                                const FieldLableWidget(
-                                  lable: "Ground Condition",
-                                  isRequired: false,
-                                ),
-
-                              if (widget.selectedInspectionType?.name !=
-                                      "Environmental Site Evaluation" &&
-                                  widget.selectedInspectionType?.name !=
-                                      "Property Review")
-                                DropdownListWidget(
-                                  margin: EdgeInsets.symmetric(
-                                    // horizontal: 15
-                                  ),
-                                  selected: selectedGroundCondition,
-
-                                  isRequired: false,
-                                  items: groundCondition,
-                                  onChange: (value) async {
-                                    selectedGroundCondition = value;
-                                    // isAddEnable();
-                                  },
-                                ),
-
-                              const SizedBox(height: 10),
-
-                              // Review Completed By
-                              if (widget.selectedInspectionType?.name ==
-                                  "Property Review")
-                                const FieldLableWidget(
-                                  lable: "Review Completed By",
-                                  isRequired: true,
-                                  // padding: EdgeInsets.only(left: 15),
-                                ),
-                              if (widget.selectedInspectionType?.name ==
-                                  "Property Review")
-                                SearchDropdownWidget(
-                                  // padding: EdgeInsets.symmetric(horizontal: 15),
-                                  controller: reviewCompletedByController,
-                                  icon: Icon(Icons.contact_page),
-                                  isRequired: true,
-                                  hintText: 'Review Completed By',
-                                  onTap: () {
-                                    Navigator.push<EmployeeModel>(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) =>
-                                            const SearchEmployeeScreen(
-                                              title: 'Review Completed By',
-                                            ),
-                                      ),
-                                    ).then((selectedEmployee) {
-                                      if (selectedEmployee != null) {
-                                        if (loginUser?.empId ==
-                                            selectedEmployee.empId) {
-                                          PopUpDialogUtility.showAlertDialogSystem(
-                                            context: context,
-                                            popupTitle: 'Warning',
-                                            description:
-                                                "Reporting Person cannot be the same as the Incident Entered By.",
-                                          );
-                                          return;
-                                        }
-                                        reviewCompletedBy(selectedEmployee);
-                                      }
-                                    });
-                                  },
-                                ),
-                              const SizedBox(height: 10),
-
-                              // Location
+                            // Temperature
+                            if (widget.selectedInspectionType?.name !=
+                                    "Property Review" &&
+                                widget.selectedInspectionType?.name !=
+                                    "Environmental Site Evaluation")
                               TextAreaWidget(
-                                height: 100,
-                                isRequired: true,
-                                // keyboardType: TextInputType.number,
-                                hintText: "Maximum charcter limit is 500sha",
-                                controller: locationController,
-                                lable: "Location",
+                                minLines: 1,
+                                height: 50,
+                                isRequired: false,
+                                keyboardType: TextInputType.number,
+                                hintText: "°Celsius",
+                                controller: temperatureController,
+                                lable: "Temperature",
                                 onChange: (value) {},
                               ),
-                              SizedBox(height: 10),
 
-                              Card(
-                                elevation: 4,
-                                color: Colors.grey[200],
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                            // Site Activity
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if (widget.selectedInspectionType?.name ==
+                                    "Sample Collection") ...[
+                                  const FieldLableWidget(
+                                    lable: "Site Activity",
+                                  ),
+                                  MultiSelectDropDown(
+                                    margin: const EdgeInsets.all(0),
+                                    searchEnabled: false,
+                                    selected: const [], //[emissionType.first],
+                                    hintText: 'Site Activity',
+                                    items: siteActivityDropdownItems,
+                                    onCheck: (value, isSelected) {},
+                                    onChange: (value) {},
+                                  ),
+
+                                  // Sample Type
+                                  const FieldLableWidget(lable: "Sample Type "),
+                                  MultiSelectDropDown(
+                                    margin: const EdgeInsets.all(0),
+                                    searchEnabled: false,
+                                    selected: const [], //[emissionType.first],
+                                    hintText: 'Sample Type',
+                                    items: sampleTypeDropdownItems,
+                                    onCheck: (value, isSelected) {},
+                                    onChange: (value) {},
+                                  ),
+                                ],
+                              ],
+                            ),
+
+                            // wind
+                            if (widget.selectedInspectionType?.name !=
+                                    "Environmental Site Evaluation" &&
+                                widget.selectedInspectionType?.name !=
+                                    "Property Review" &&
+                                widget.selectedInspectionType?.name !=
+                                    "Sample Collection")
+                              const FieldLableWidget(
+                                lable: "Wind",
+                                isRequired: false,
+                              ),
+
+                            if (widget.selectedInspectionType?.name !=
+                                    "Environmental Site Evaluation" &&
+                                widget.selectedInspectionType?.name !=
+                                    "Property Review" &&
+                                widget.selectedInspectionType?.name !=
+                                    "Sample Collection")
+                              DropdownListWidget(
+                                margin: EdgeInsets.symmetric(
+                                  // horizontal: 15
                                 ),
+                                selected: selectedWind,
 
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                isRequired: false,
+                                items: wind,
+                                onChange: (value) async {
+                                  selectedWind = value;
+                                  // isAddEnable();
+                                },
+                              ),
+
+                            // Ground Condition
+                            if (widget.selectedInspectionType?.name !=
+                                    "Environmental Site Evaluation" &&
+                                widget.selectedInspectionType?.name !=
+                                    "Property Review")
+                              const FieldLableWidget(
+                                lable: "Ground Condition",
+                                isRequired: false,
+                              ),
+
+                            if (widget.selectedInspectionType?.name !=
+                                    "Environmental Site Evaluation" &&
+                                widget.selectedInspectionType?.name !=
+                                    "Property Review")
+                              DropdownListWidget(
+                                margin: EdgeInsets.symmetric(
+                                  // horizontal: 15
+                                ),
+                                selected: selectedGroundCondition,
+
+                                isRequired: false,
+                                items: groundCondition,
+                                onChange: (value) async {
+                                  selectedGroundCondition = value;
+                                  // isAddEnable();
+                                },
+                              ),
+
+                            const SizedBox(height: 10),
+
+                            // Review Completed By
+                            if (widget.selectedInspectionType?.name ==
+                                "Property Review")
+                              const FieldLableWidget(
+                                lable: "Review Completed By",
+                                isRequired: true,
+                                // padding: EdgeInsets.only(left: 15),
+                              ),
+                            if (widget.selectedInspectionType?.name ==
+                                "Property Review")
+                              SearchDropdownWidget(
+                                // //padding: EdgeInsets.symmetric(horizontal: 15),
+                                controller: reviewCompletedByController,
+                                icon: Icon(Icons.contact_page),
+                                isRequired: true,
+                                hintText: 'Review Completed By',
+                                onTap: () {
+                                  Navigator.push<EmployeeModel>(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          const SearchEmployeeScreen(
+                                            title: 'Review Completed By',
+                                          ),
+                                    ),
+                                  ).then((selectedEmployee) {
+                                    if (selectedEmployee != null) {
+                                      if (loginUser?.empId ==
+                                          selectedEmployee.empId) {
+                                        PopUpDialogUtility.showAlertDialogSystem(
+                                          context: context,
+                                          popupTitle: 'Warning',
+                                          description:
+                                              "Reporting Person cannot be the same as the Incident Entered By.",
+                                        );
+                                        return;
+                                      }
+                                      reviewCompletedBy(selectedEmployee);
+                                    }
+                                  });
+                                },
+                              ),
+                            // const SizedBox(height: 10),
+
+                            // Location
+                            TextAreaWidget(
+                              height: 100,
+                              isRequired: true,
+                              // keyboardType: TextInputType.number,
+                              hintText:
+                                  "Maximum charcter limit is 500 charcters",
+                              controller: locationController,
+                              lable: "Location",
+                              onChange: (value) {},
+                            ),
+                            SizedBox(height: 10),
+
+                            Container(
+                              // elevation: 4,
+                              color: Colors.white,
+
+                              // shape: RoundedRectangleBorder(
+                              //   borderRadius: BorderRadius.circular(8),
+                              // ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 8),
+                                child: ElevatedButton(
+                                  onPressed: () {},
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -1293,9 +1394,10 @@ class InspectionTabInCustomTabBarScreenState
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
+                        // ),
                       ],
                     ),
                   ),
@@ -1306,10 +1408,11 @@ class InspectionTabInCustomTabBarScreenState
 
           // section 2
           // getSelectedWidget(widget.selectedInspectionType?.name),
-          Padding(
-            padding: const EdgeInsets.all(0),
-            child: getSelectedWidgetInSection2(),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(0),
+          //   child:
+          getSelectedWidgetInSection2(),
+          // ),
         ],
         // ),
       ),
@@ -1400,13 +1503,13 @@ class InspectionTabInCustomTabBarScreenState
                                     ),
                                   ),
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blue,
+                                    backgroundColor: AppColors.appPrimaryColor,
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 16,
                                       // vertical: 12,
                                     ),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
                                   ),
                                 ),
@@ -1524,14 +1627,14 @@ class InspectionTabInCustomTabBarScreenState
                         DropdownListWidget(
                           hintText: "Property Zoning",
                           margin: EdgeInsets.symmetric(horizontal: 0),
-                          selected: _selectedPropertyZoning,
+                          selected: selectedPropertyZoning,
 
                           isRequired: false,
                           // margin: const EdgeInsets.all(0),
                           items: propertyZoning,
                           onChange: (value) async {
-                            _selectedPropertyZoning = value;
-                            // isAddEnable(_selectedPropertyZoning);
+                            selectedPropertyZoning = value;
+                            // isAddEnable(selectedPropertyZoning);
                           },
                         ),
 
@@ -1551,7 +1654,7 @@ class InspectionTabInCustomTabBarScreenState
                           items: propertyUse,
                           onChange: (value) async {
                             _selectedPropertyUse = value;
-                            // isAddEnable(_selectedPropertyZoning);
+                            // isAddEnable(selectedPropertyZoning);
                           },
                         ),
                         SizedBox(height: 10),
@@ -1566,10 +1669,44 @@ class InspectionTabInCustomTabBarScreenState
                           searchEnabled: false,
                           selected: const [], //[emissionType.first],
                           hintText: 'Items Onsite',
-                          items: siteActivityDropdownItems,
+                          items: itemsOnsiteDropdownItems,
                           onCheck: (value, isSelected) {},
-                          onChange: (value) {},
+                          onChange: (values) {},
                         ),
+
+                        // Keep track of selected items (store models or just names)
+
+                        // Widget
+                        // MultiSelectDropDown(
+                        //   isRequired: true,
+                        //   margin: const EdgeInsets.all(0),
+                        //   searchEnabled: false,
+                        //   selected: selectedItemsOnsite, // ✅ bind list directly
+                        //   hintText: 'Items Onsite',
+                        //   items: itemsOnsiteDropdownItems,
+                        //   onCheck: (value, isSelected) {
+                        //     final item = value as DropdownItemModel;
+                        //     setState(() {
+                        //       if (isSelected) {
+                        //         if (!selectedItemsOnsite.any(
+                        //           (e) => e.id == item.id,
+                        //         )) {
+                        //           selectedItemsOnsite.add(item);
+                        //         }
+                        //       } else {
+                        //         selectedItemsOnsite.removeWhere(
+                        //           (e) => e.id == item.id,
+                        //         );
+                        //       }
+                        //     });
+                        //   },
+                        //   onChange: (values) {
+                        //     setState(() {
+                        //       selectedItemsOnsite =
+                        //           List<DropdownItemModel>.from(values);
+                        //     });
+                        //   },
+                        // ),
                         SizedBox(height: 10),
 
                         const FieldLableWidget(
@@ -1581,7 +1718,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: stressedVegetationRadioBtn1,
                           radioSelectedValue: selectedValuestressedVegetation,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           // isRequired: true,
                           showError: false,
                           onChange: (newValue) async {
@@ -1640,7 +1777,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioSelectedValue:
                               selectedValueSoilStainingObserved, // selectedValueSoilStainingObserved
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           // isRequired: true,
                           showError: false,
                           onChange: (newValue) async {
@@ -1683,7 +1820,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioSelectedValue:
                               selectedValueInterview, // selectedValueInterview
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           // isRequired: true,
                           showError: false,
                           onChange: (newValue) async {
@@ -1724,7 +1861,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioSelectedValue:
                               selectedValueIssueIdentified, // selectedValueIssueIdentified
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           // isRequired: true,
                           showError: false,
                           onChange: (newValue) async {
@@ -1791,7 +1928,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: propertyReviewRadioBtn1,
                           radioSelectedValue: selectedValuePropertyReview1,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: false,
                           showError: false,
                           onChange: (newValue) async {
@@ -1818,11 +1955,16 @@ class InspectionTabInCustomTabBarScreenState
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-          child: Card(
-            color: Colors.white,
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+          child: Container(
+            // color: Colors.white,
+            // elevation: 4,
+            // shape: RoundedRectangleBorder(
+            //   borderRadius: BorderRadius.circular(8),
+            // ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(15),
             ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -1858,7 +2000,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn1,
                           initialValue: selectedValueEnvironmentalSite1,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -1879,7 +2021,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn2,
                           initialValue: selectedValueEnvironmentalSite2,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -1900,7 +2042,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn3,
                           initialValue: selectedValueEnvironmentalSite3,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -1921,7 +2063,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn4,
                           initialValue: selectedValueEnvironmentalSite4,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -1942,7 +2084,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn5,
                           initialValue: selectedValueEnvironmentalSite5,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -1963,7 +2105,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn6,
                           initialValue: selectedValueEnvironmentalSite6,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -1984,7 +2126,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn7,
                           initialValue: selectedValueEnvironmentalSite7,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -2004,7 +2146,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn8,
                           initialValue: selectedValueEnvironmentalSite8,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -2025,7 +2167,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn9,
                           initialValue: selectedValueEnvironmentalSite9,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -2046,7 +2188,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn10,
                           initialValue: selectedValueEnvironmentalSite10,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -2067,7 +2209,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn11,
                           initialValue: selectedValueEnvironmentalSite11,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -2088,7 +2230,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn12,
                           initialValue: selectedValueEnvironmentalSite12,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -2109,7 +2251,7 @@ class InspectionTabInCustomTabBarScreenState
                           radioItems: environmentalSiteRadioBtn13,
                           initialValue: selectedValueEnvironmentalSite13,
                           direction: RadioType.vertical,
-                          activeColor: Colors.blue,
+                          activeColor: AppColors.appPrimaryColor,
                           isRequired: true,
                           onChanged: (newValue) {
                             setState(() {
@@ -2139,12 +2281,12 @@ class InspectionTabInCustomTabBarScreenState
       children: [
         //Erosion and Sediment Control in ESC Inspection
         Padding(
-          // padding: const EdgeInsets.all(16.0),
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+          // padding: const EdgeInsets.all(0),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           child: ExpanstionTileWidget(
             collapsedBackgroundColor: Colors.white,
             backgroundColor: Colors.white,
-            // padding: const EdgeInsets.only(top: 15),
+            // padding: const EdgeInsets.symmetric(horizontal: 15),
             isExpanded: false,
             expanstionTitle: 'Erosion and Sediment Control',
             suffixWidget: Padding(
@@ -2238,7 +2380,7 @@ class InspectionTabInCustomTabBarScreenState
 
             widgetList: [
               Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -2261,7 +2403,7 @@ class InspectionTabInCustomTabBarScreenState
                       lable:
                           "Silt Fence (standing upright, no gaps, silt accumulation removed).",
                       //isRequired: false
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -2270,7 +2412,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControlInESCInspection1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -2323,7 +2465,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      // //padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -2335,29 +2477,40 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // Q1
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: erosionSedimentQ1Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ1Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: erosionSedimentQ1Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ1Photos = files);
+                    //   },
+                    // ),
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: erosionSedimentQ1Docs,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ1Docs = files);
-                      },
+                      storageKey: screen1Q1DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: erosionSedimentQ1Photos,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ1Photos = files);
-                      },
+                      storageKey: screen1Q1PhotosKey,
                     ),
+
                     SizedBox(height: 15),
 
                     // Question 2
                     const FieldLableWidget(
                       lable:
                           "Check Dams (in good condition, silt accumulation removed, no evidence of water circumventing the check dam)",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -2366,7 +2519,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControlInESCInspection2,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -2405,7 +2558,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      // //padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -2418,21 +2571,31 @@ class InspectionTabInCustomTabBarScreenState
                     SizedBox(height: 15),
 
                     // Q2
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: erosionSedimentQ2Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ2Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: erosionSedimentQ2Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ2Photos = files);
+                    //   },
+                    // ),
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: erosionSedimentQ2Docs,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ2Docs = files);
-                      },
+                      storageKey: screen1Q2DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: erosionSedimentQ2Photos,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ2Photos = files);
-                      },
+                      storageKey: screen1Q2PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -2440,7 +2603,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Sediment Ponds/Sumps (sufficient size, no leaking, clear water being discharged)",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -2449,7 +2612,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControlInESCInspection3,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -2488,7 +2651,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      // //padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -2500,21 +2663,31 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // Q3
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: erosionSedimentQ3Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ3Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: erosionSedimentQ3Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ3Photos = files);
+                    //   },
+                    // ),
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: erosionSedimentQ3Docs,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ3Docs = files);
-                      },
+                      storageKey: screen1Q3DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: erosionSedimentQ3Photos,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ3Photos = files);
-                      },
+                      storageKey: screen1Q3PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -2522,7 +2695,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Exposed Surfaces (covered in straw, mulch, stone, or other covering material)",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -2531,7 +2704,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControlInESCInspection4,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -2570,7 +2743,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      // //padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -2582,21 +2755,31 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // Q4
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: erosionSedimentQ4Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ4Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: erosionSedimentQ4Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ4Photos = files);
+                    //   },
+                    // ),
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: erosionSedimentQ4Docs,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ4Docs = files);
-                      },
+                      storageKey: screen1Q4DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: erosionSedimentQ4Photos,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ4Photos = files);
-                      },
+                      storageKey: screen1Q4PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -2604,7 +2787,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Sloping (finished slopes adequately stabilized, no evidence of erosion on previously stabilized area)",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -2613,7 +2796,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControlInESCInspection5,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -2652,7 +2835,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -2665,21 +2848,31 @@ class InspectionTabInCustomTabBarScreenState
                     SizedBox(height: 15),
 
                     // Q5
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: erosionSedimentQ5Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ5Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: erosionSedimentQ5Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ5Photos = files);
+                    //   },
+                    // ),
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: erosionSedimentQ5Docs,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ5Docs = files);
-                      },
+                      storageKey: screen1Q5DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: erosionSedimentQ5Photos,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ5Photos = files);
-                      },
+                      storageKey: screen1Q5PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -2687,7 +2880,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Stockpiles (suitably sloped, appropriately managed)",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -2696,7 +2889,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControlInESCInspection6,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -2735,7 +2928,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -2747,28 +2940,38 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // Q6
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: erosionSedimentQ6Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ6Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: erosionSedimentQ6Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ6Photos = files);
+                    //   },
+                    // ),
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: erosionSedimentQ6Docs,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ6Docs = files);
-                      },
+                      storageKey: screen1Q6DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: erosionSedimentQ6Photos,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ6Photos = files);
-                      },
+                      storageKey: screen1Q6PhotosKey,
                     ),
                     SizedBox(height: 15),
 
                     // Question 7
                     const FieldLableWidget(
                       lable: "Temporary Road (stable, in good condition)",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -2777,7 +2980,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControlInESCInspection7,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -2816,7 +3019,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -2825,13 +3028,25 @@ class InspectionTabInCustomTabBarScreenState
                       lable: "Comment",
                       onChange: (value) {},
                     ),
+                    SizedBox(height: 15),
+
+                    DocumentAndPhotoUploadWidget(
+                      title: "Attach Documents",
+                      isDocument: true,
+                      storageKey: screen1Q7DocumentsKey,
+                    ),
+                    DocumentAndPhotoUploadWidget(
+                      title: "Attach Photos",
+                      isDocument: false,
+                      storageKey: screen1Q7PhotosKey,
+                    ),
 
                     SizedBox(height: 15),
 
                     // Question 8
                     const FieldLableWidget(
                       lable: "Site Access (no mud being tracked offsite)",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -2840,7 +3055,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControlInESCInspection8,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -2879,7 +3094,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      // //padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -2888,32 +3103,44 @@ class InspectionTabInCustomTabBarScreenState
                       lable: "Comment",
                       onChange: (value) {},
                     ),
+                    SizedBox(height: 15),
+
+                    DocumentAndPhotoUploadWidget(
+                      title: "Attach Documents",
+                      isDocument: true,
+                      storageKey: screen1Q8DocumentsKey,
+                    ),
+                    DocumentAndPhotoUploadWidget(
+                      title: "Attach Photos",
+                      isDocument: false,
+                      storageKey: screen1Q8PhotosKey,
+                    ),
 
                     SizedBox(height: 15),
                     // Q8
-                    AttachmentSection(
-                      title: "Attach Documents",
-                      isDocument: true,
-                      files: erosionSedimentQ8Docs,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ8Docs = files);
-                      },
-                    ),
-                    AttachmentSection(
-                      title: "Attach Photos",
-                      isDocument: false,
-                      files: erosionSedimentQ8Photos,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ8Photos = files);
-                      },
-                    ),
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: erosionSedimentQ8Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ8Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: erosionSedimentQ8Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ8Photos = files);
+                    //   },
+                    // ),
                     SizedBox(height: 15),
 
                     // Question 9
                     const FieldLableWidget(
                       lable:
                           "Vegetation (existing vegetation is being managed and maintained)",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -2922,7 +3149,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControlInESCInspection9,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -2961,7 +3188,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      // ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -2973,21 +3200,31 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // Q9
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: erosionSedimentQ9Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ9Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: erosionSedimentQ9Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => erosionSedimentQ9Photos = files);
+                    //   },
+                    // ),
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: erosionSedimentQ9Docs,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ9Docs = files);
-                      },
+                      storageKey: screen1Q9DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: erosionSedimentQ9Photos,
-                      onFilesChanged: (files) {
-                        setState(() => erosionSedimentQ9Photos = files);
-                      },
+                      storageKey: screen1Q9PhotosKey,
                     ),
                     SizedBox(height: 15),
                   ],
@@ -3104,7 +3341,7 @@ class InspectionTabInCustomTabBarScreenState
                     // Question 1
                     const FieldLableWidget(
                       lable: "Water Quality (clear and silt free)",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -3112,7 +3349,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueWaterManagementInESCInspection1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -3155,7 +3392,7 @@ class InspectionTabInCustomTabBarScreenState
                     ),
 
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -3167,21 +3404,32 @@ class InspectionTabInCustomTabBarScreenState
                     SizedBox(height: 15),
 
                     // After TextAreaWidget for Q1
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: waterManagementQ1Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ1Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: waterManagementQ1Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ1Photos = files);
+                    //   },
+                    // ),
+                    // Question 1
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: waterManagementQ1Docs,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ1Docs = files);
-                      },
+                      storageKey: waterManagementQ1DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: waterManagementQ1Photos,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ1Photos = files);
-                      },
+                      storageKey: waterManagementQ1PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -3189,7 +3437,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Sediment Laden Water Pumping (sufficient pump size(s), in good working order, no leaks in hoses, discharge to vegetation or silt bag >30 m from watercourse)",
-                      padding: EdgeInsets.only(left: 15),
+                      // //padding: EdgeInsets.symmetric(horizontal: 15),
                     ),
 
                     RadioButtonWidget(
@@ -3197,7 +3445,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueWaterManagementInESCInspection2,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -3240,7 +3488,7 @@ class InspectionTabInCustomTabBarScreenState
                     ),
 
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -3251,21 +3499,33 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // After TextAreaWidget for Q2
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: waterManagementQ2Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ2Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: waterManagementQ2Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ2Photos = files);
+                    //   },
+                    // ),
+
+                    // Question 2
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: waterManagementQ2Docs,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ2Docs = files);
-                      },
+                      storageKey: waterManagementQ2DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: waterManagementQ2Photos,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ2Photos = files);
-                      },
+                      storageKey: waterManagementQ2PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -3273,7 +3533,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Stormwater Infrastructure (silt-laden water is prevented from entering catch basins and ditches)",
-                      padding: EdgeInsets.only(left: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                     ),
 
                     RadioButtonWidget(
@@ -3281,7 +3541,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueWaterManagementInESCInspection3,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -3324,7 +3584,7 @@ class InspectionTabInCustomTabBarScreenState
                     ),
 
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -3335,21 +3595,33 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // After TextAreaWidget for Q3
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: waterManagementQ3Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ3Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: waterManagementQ3Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ3Photos = files);
+                    //   },
+                    // ),
+
+                    // Question 3
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: waterManagementQ3Docs,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ3Docs = files);
-                      },
+                      storageKey: waterManagementQ3DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: waterManagementQ3Photos,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ3Photos = files);
-                      },
+                      storageKey: waterManagementQ3PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -3357,7 +3629,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Temporary Culverts (stable, no mud or sediment tracking into watercourse)",
-                      padding: EdgeInsets.only(left: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                     ),
 
                     RadioButtonWidget(
@@ -3365,7 +3637,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueWaterManagementInESCInspection4,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -3408,7 +3680,7 @@ class InspectionTabInCustomTabBarScreenState
                     ),
 
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -3419,21 +3691,33 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // After TextAreaWidget for Q4
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: waterManagementQ4Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ4Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: waterManagementQ4Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ4Photos = files);
+                    //   },
+                    // ),
+
+                    // Question 4
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: waterManagementQ4Docs,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ4Docs = files);
-                      },
+                      storageKey: waterManagementQ4DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: waterManagementQ4Photos,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ4Photos = files);
-                      },
+                      storageKey: waterManagementQ4PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -3441,7 +3725,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Temporary Bridges (no part of structure below high water mark, bridge surface is clean)",
-                      padding: EdgeInsets.only(left: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                     ),
 
                     RadioButtonWidget(
@@ -3449,7 +3733,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueWaterManagementInESCInspection5,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -3492,7 +3776,7 @@ class InspectionTabInCustomTabBarScreenState
                     ),
 
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -3504,21 +3788,32 @@ class InspectionTabInCustomTabBarScreenState
                     SizedBox(height: 15),
 
                     // After TextAreaWidget for Q5
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: waterManagementQ5Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ5Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: waterManagementQ5Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ5Photos = files);
+                    //   },
+                    // ),
+                    // Question 5
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: waterManagementQ5Docs,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ5Docs = files);
-                      },
+                      storageKey: waterManagementQ5DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: waterManagementQ5Photos,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ5Photos = files);
-                      },
+                      storageKey: waterManagementQ5PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -3526,7 +3821,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Cofferdams (in good condition, constructed with an impermeable barrier, no evidence of water circumventing the cofferdam).",
-                      padding: EdgeInsets.only(left: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                     ),
 
                     RadioButtonWidget(
@@ -3534,7 +3829,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueWaterManagementInESCInspection6,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -3577,7 +3872,7 @@ class InspectionTabInCustomTabBarScreenState
                     ),
 
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -3589,21 +3884,33 @@ class InspectionTabInCustomTabBarScreenState
                     SizedBox(height: 15),
 
                     // After TextAreaWidget for Q6
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: waterManagementQ6Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ6Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: waterManagementQ6Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ6Photos = files);
+                    //   },
+                    // ),
+
+                    // Question 6
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: waterManagementQ6Docs,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ6Docs = files);
-                      },
+                      storageKey: waterManagementQ6DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: waterManagementQ6Photos,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ6Photos = files);
-                      },
+                      storageKey: waterManagementQ6PhotosKey,
                     ),
 
                     SizedBox(height: 15),
@@ -3612,7 +3919,7 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Silt Booms/Curtains (free of rips, firmly anchored to the bottom)",
-                      padding: EdgeInsets.only(left: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                     ),
 
                     RadioButtonWidget(
@@ -3620,7 +3927,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueWaterManagementInESCInspection7,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -3663,7 +3970,7 @@ class InspectionTabInCustomTabBarScreenState
                     ),
 
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Charcter limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -3674,28 +3981,39 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // After TextAreaWidget for Q7
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: waterManagementQ7Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ7Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: waterManagementQ7Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ7Photos = files);
+                    //   },
+                    // ),
+
+                    // Question 7
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: waterManagementQ7Docs,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ7Docs = files);
-                      },
+                      storageKey: waterManagementQ7DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: waterManagementQ7Photos,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ7Photos = files);
-                      },
+                      storageKey: waterManagementQ7PhotosKey,
                     ),
-
                     // Question 8
                     const FieldLableWidget(
                       lable:
                           "Is fuel and hydrocarbon storage and/or refueling being completed 30m away from a watercourse or wetlands?",
-                      padding: EdgeInsets.only(left: 15),
+                      // padding: EdgeInsets.only(left: 15),
                     ),
 
                     RadioButtonWidget(
@@ -3703,7 +4021,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueWaterManagementInESCInspection8,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -3747,22 +4065,35 @@ class InspectionTabInCustomTabBarScreenState
 
                     SizedBox(height: 15),
                     // After TextAreaWidget for Q8
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: waterManagementQ8Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ8Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: waterManagementQ8Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => waterManagementQ8Photos = files);
+                    //   },
+                    // ),
+
+                    // Question 8
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: waterManagementQ8Docs,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ8Docs = files);
-                      },
+                      storageKey: waterManagementQ8DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: waterManagementQ8Photos,
-                      onFilesChanged: (files) {
-                        setState(() => waterManagementQ8Photos = files);
-                      },
+                      storageKey: waterManagementQ8PhotosKey,
                     ),
+
                     // sizedBox(height: 15),
                   ],
                 ),
@@ -3839,14 +4170,14 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Housekeeping (site is free of trash, good housekeeping practices in place)",
-                      padding: EdgeInsets.only(left: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                     ),
                     RadioButtonWidget(
                       radioItems: siteConditionsHousekeepingRadioBtn1,
                       radioSelectedValue:
                           selectedValueSiteConditionsHousekeeping1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -3885,7 +4216,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Character limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -3895,35 +4226,47 @@ class InspectionTabInCustomTabBarScreenState
                     ),
                     SizedBox(height: 15),
                     // After TextAreaWidget for Q1
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: housekeepingQ1Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => housekeepingQ1Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: housekeepingQ1Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => housekeepingQ1Photos = files);
+                    //   },
+                    // ),
+                    // Question 1
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: housekeepingQ1Docs,
-                      onFilesChanged: (files) {
-                        setState(() => housekeepingQ1Docs = files);
-                      },
+                      storageKey: siteConditionsQ1DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: housekeepingQ1Photos,
-                      onFilesChanged: (files) {
-                        setState(() => housekeepingQ1Photos = files);
-                      },
+                      storageKey: siteConditionsQ1PhotosKey,
                     ),
+
                     SizedBox(height: 15),
 
                     // Question 2
                     const FieldLableWidget(
                       lable: "Dust (preventative measures in place)",
-                      padding: EdgeInsets.only(left: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                     ),
                     RadioButtonWidget(
                       radioItems: siteConditionsHousekeepingRadioBtn2,
                       radioSelectedValue:
                           selectedValueSiteConditionsHousekeeping2,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -3962,7 +4305,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Character limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -3971,21 +4314,33 @@ class InspectionTabInCustomTabBarScreenState
                       onChange: (value) {},
                     ),
                     SizedBox(height: 15),
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: housekeepingQ2Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => housekeepingQ2Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: housekeepingQ2Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => housekeepingQ2Photos = files);
+                    //   },
+                    // ),
+
+                    // Question 2
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: housekeepingQ2Docs,
-                      onFilesChanged: (files) {
-                        setState(() => housekeepingQ2Docs = files);
-                      },
+                      storageKey: siteConditionsQ2DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: housekeepingQ2Photos,
-                      onFilesChanged: (files) {
-                        setState(() => housekeepingQ2Photos = files);
-                      },
+                      storageKey: siteConditionsQ2PhotosKey,
                     ),
                     SizedBox(height: 15),
 
@@ -3993,14 +4348,14 @@ class InspectionTabInCustomTabBarScreenState
                     const FieldLableWidget(
                       lable:
                           "Is waste secured to reduce wildlife interactions?",
-                      padding: EdgeInsets.only(left: 15),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
                     ),
                     RadioButtonWidget(
                       radioItems: siteConditionsHousekeepingRadioBtn3,
                       radioSelectedValue:
                           selectedValueSiteConditionsHousekeeping3,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -4039,7 +4394,7 @@ class InspectionTabInCustomTabBarScreenState
                       },
                     ),
                     TextAreaWidget(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      ////padding: EdgeInsets.symmetric(horizontal: 15),
                       hintText: "Maximum Character limit is 500",
                       maxLength: 500,
                       height: 70,
@@ -4048,21 +4403,33 @@ class InspectionTabInCustomTabBarScreenState
                       onChange: (value) {},
                     ),
                     SizedBox(height: 15),
-                    AttachmentSection(
+                    // AttachmentSection(
+                    //   title: "Attach Documents",
+                    //   isDocument: true,
+                    //   files: housekeepingQ3Docs,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => housekeepingQ3Docs = files);
+                    //   },
+                    // ),
+                    // AttachmentSection(
+                    //   title: "Attach Photos",
+                    //   isDocument: false,
+                    //   files: housekeepingQ3Photos,
+                    //   onFilesChanged: (files) {
+                    //     setState(() => housekeepingQ3Photos = files);
+                    //   },
+                    // ),
+
+                    // Question 3
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Documents",
                       isDocument: true,
-                      files: housekeepingQ3Docs,
-                      onFilesChanged: (files) {
-                        setState(() => housekeepingQ3Docs = files);
-                      },
+                      storageKey: siteConditionsQ3DocumentsKey,
                     ),
-                    AttachmentSection(
+                    DocumentAndPhotoUploadWidget(
                       title: "Attach Photos",
                       isDocument: false,
-                      files: housekeepingQ3Photos,
-                      onFilesChanged: (files) {
-                        setState(() => housekeepingQ3Photos = files);
-                      },
+                      storageKey: siteConditionsQ3PhotosKey,
                     ),
                     SizedBox(height: 10),
                   ],
@@ -4094,6 +4461,7 @@ class InspectionTabInCustomTabBarScreenState
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Checkbox(
+                    activeColor: AppColors.appPrimaryColor,
                     value: _administratorControlsIsChecked,
                     onChanged: (bool? value) {
                       setState(() {
@@ -4165,7 +4533,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: administrativeControlsRadioBtn1,
                       radioSelectedValue: selectedValueAdministratorControls1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -4175,6 +4543,9 @@ class InspectionTabInCustomTabBarScreenState
                         // Immediately update selection
                         setState(() {
                           selectedValueAdministratorControls1 = selectedItem;
+                          print(
+                            "${selectedValueAdministratorControls1?.name} 1234567890",
+                          );
                         });
 
                         // If selected is "No", open CaDescriptionScreen with a unique ID
@@ -4227,7 +4598,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: administrativeControlsRadioBtn2,
                       radioSelectedValue: selectedValueAdministratorControls2,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -4288,7 +4659,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: administrativeControlsRadioBtn3,
                       radioSelectedValue: selectedValueAdministratorControls3,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -4340,7 +4711,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: administrativeControlsRadioBtn4,
                       radioSelectedValue: selectedValueAdministratorControls4,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -4405,6 +4776,7 @@ class InspectionTabInCustomTabBarScreenState
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Checkbox(
+                    activeColor: AppColors.appPrimaryColor,
                     value: _erosionAndSedimentControlIsChecked,
                     onChanged: (bool? value) {
                       setState(() {
@@ -4494,7 +4866,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControl1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -4548,7 +4920,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControl2,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -4603,7 +4975,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControl3,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -4657,7 +5029,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControl4,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -4713,7 +5085,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControl5,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -4769,7 +5141,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControl6,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -4826,7 +5198,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControl7,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -4883,7 +5255,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioSelectedValue:
                           selectedValueErosionAndSedimentControl8,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -4950,6 +5322,7 @@ class InspectionTabInCustomTabBarScreenState
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Checkbox(
+                    activeColor: AppColors.appPrimaryColor,
                     value: _fuelAndOilManagementIsChecked,
                     onChanged: (bool? value) {
                       setState(() {
@@ -5019,7 +5392,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: fuelAndOilManagementRadioBtn1,
                       radioSelectedValue: selectedValueFuelAndOilManagement1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
                       onChange: (newValue) async {
@@ -5072,7 +5445,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: fuelAndOilManagementRadioBtn2,
                       radioSelectedValue: selectedValueFuelAndOilManagement2,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5127,7 +5500,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: fuelAndOilManagementRadioBtn3,
                       radioSelectedValue: selectedValueFuelAndOilManagement3,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5183,7 +5556,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: fuelAndOilManagementRadioBtn4,
                       radioSelectedValue: selectedValueFuelAndOilManagement4,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5250,6 +5623,7 @@ class InspectionTabInCustomTabBarScreenState
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Checkbox(
+                    activeColor: AppColors.appPrimaryColor,
                     value: _wasteManagementIsChecked,
                     onChanged: (bool? value) {
                       setState(() {
@@ -5314,7 +5688,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: wasteManagementRadioBtn1,
                       radioSelectedValue: selectedValueWasteManagement1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5368,7 +5742,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: wasteManagementRadioBtn2,
                       radioSelectedValue: selectedValueWasteManagement2,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5422,7 +5796,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: wasteManagementRadioBtn3,
                       radioSelectedValue: selectedValueWasteManagement3,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5489,6 +5863,7 @@ class InspectionTabInCustomTabBarScreenState
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Checkbox(
+                    activeColor: AppColors.appPrimaryColor,
                     value: _wildlifeIsChecked,
                     onChanged: (bool? value) {
                       setState(() {
@@ -5550,7 +5925,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: wildlifeRadioBtn1,
                       radioSelectedValue: selectedValueWildlife1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5605,7 +5980,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: wildlifeRadioBtn2,
                       radioSelectedValue: selectedValueWildlife2,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5659,7 +6034,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: wildlifeRadioBtn3,
                       radioSelectedValue: selectedValueWildlife3,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5727,6 +6102,7 @@ class InspectionTabInCustomTabBarScreenState
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Checkbox(
+                    activeColor: AppColors.appPrimaryColor,
                     value: _airQualityManagementIsChecked,
                     onChanged: (bool? value) {
                       setState(() {
@@ -5790,7 +6166,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: airQualityManagementRadioBtn1,
                       radioSelectedValue: selectedValueairQualityManagement1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5844,7 +6220,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: airQualityManagementRadioBtn2,
                       radioSelectedValue: selectedValueairQualityManagement2,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5898,7 +6274,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: airQualityManagementRadioBtn3,
                       radioSelectedValue: selectedValueairQualityManagement3,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -5965,6 +6341,7 @@ class InspectionTabInCustomTabBarScreenState
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Checkbox(
+                    activeColor: AppColors.appPrimaryColor,
                     value: _archaeologyIsChecked,
                     onChanged: (bool? value) {
                       setState(() {
@@ -6019,7 +6396,7 @@ class InspectionTabInCustomTabBarScreenState
                       radioItems: archaeologyRadioBtn1,
                       radioSelectedValue: selectedValueArchaeology1,
                       direction: RadioType.vertical,
-                      activeColor: Colors.blue,
+                      activeColor: AppColors.appPrimaryColor,
                       isRequired: true,
                       showError: false,
 
@@ -6069,10 +6446,19 @@ class InspectionTabInCustomTabBarScreenState
         ),
 
         // Environmental inspecion radio btn
-        Card(
-          color: Colors.white,
-          elevation: 5,
-          margin: const EdgeInsets.symmetric(horizontal: 15),
+        Container(
+          // elevation: 5,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          margin: const EdgeInsets.only(
+            left: 15,
+            right: 15,
+            top: 10,
+            bottom: 0,
+          ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -6096,7 +6482,7 @@ class InspectionTabInCustomTabBarScreenState
                   radioItems: environmentalInspectionRadioBtn,
                   radioSelectedValue: selectedValueEnvironmentalInspection,
                   direction: RadioType.vertical,
-                  activeColor: Colors.blue,
+                  activeColor: AppColors.appPrimaryColor,
                   isRequired: true,
                   showError: false,
                   onChange: (newValue) {
@@ -6105,6 +6491,11 @@ class InspectionTabInCustomTabBarScreenState
                         setState(() {
                           selectedValueEnvironmentalInspection =
                               newValue as DropdownItemModel;
+                          if (selectedValueEnvironmentalInspection?.name
+                                  .toLowerCase() ==
+                              "no") {
+                            selectedEnvironmentalIncident = null;
+                          }
                         });
                       }
                     });
@@ -6112,6 +6503,31 @@ class InspectionTabInCustomTabBarScreenState
 
                   textStyle: const TextStyle(fontSize: 14),
                 ),
+                if (selectedValueEnvironmentalInspection?.name.toLowerCase() ==
+                    "yes")
+                  DropdownListWidget(
+                    margin: EdgeInsets.symmetric(),
+                    selected: selectedEnvironmentalIncident,
+                    isRequired: false,
+                    items: environmentalIncidentItems,
+                    onChange: (value) async {
+                      selectedEnvironmentalIncident = value;
+                      setState(() {});
+                    },
+                  ),
+                if (selectedEnvironmentalIncident?.name == "Other")
+                  TextAreaWidget(
+                    padding: EdgeInsets.all(0),
+                    minLines: 2,
+                    height: 60,
+                    maxLength: 500,
+                    // showCounterText: true,
+                    // isRequired: true,
+                    hintText: "Maximum charcter limit is 500",
+                    controller: siteNameController,
+                    lable: "",
+                    onChange: (value) {},
+                  ),
               ],
             ),
           ),

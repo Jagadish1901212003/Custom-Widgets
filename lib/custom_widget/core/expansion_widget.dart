@@ -54,14 +54,14 @@ class ExpanstionTileWidget extends StatelessWidget {
             color: borderColor ?? AppColors.appBorderColor,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(5),
         ),
         collapsedShape: RoundedRectangleBorder(
           side: BorderSide(
             color: borderColor ?? AppColors.appBorderColor,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(5),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

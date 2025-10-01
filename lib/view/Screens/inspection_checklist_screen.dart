@@ -10,6 +10,7 @@ import 'package:custom_widgets/custom_widget/core/text_area_widget.dart';
 import 'package:custom_widgets/custom_widget/core/text_field_widget2.dart';
 import 'package:custom_widgets/model/dropdown_item_model.dart';
 import 'package:custom_widgets/model/employee_model.dart';
+import 'package:custom_widgets/utility/app_colors.dart';
 import 'package:custom_widgets/utility/enum.dart';
 import 'package:custom_widgets/utility/global_tabs.dart';
 import 'package:custom_widgets/utility/pop_up_dialog_utility.dart';
@@ -117,44 +118,326 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
         "approvalNumber": approveNOController.text,
         "linkedToIncident": selectedValue!.name,
       },
-      "inspectionTab": {
-        "siteName": _inspectionTabKey.currentState?.siteNameController.text,
-        "inspectionDate":
-            _inspectionTabKey.currentState?.dateOfEventController.text,
-        "inspectionTime":
-            _inspectionTabKey.currentState?.timeOfEventController.text,
-        "siteType": _inspectionTabKey.currentState?.selectedSiteType?.name,
-        "construction status":
-            _inspectionTabKey.currentState?.selectedConstructionStatus?.name,
+      "inspectionTab": (_selectedInspectionType?.id == 1)
+          ? {
+              "siteName":
+                  _inspectionTabKey.currentState?.siteNameController.text,
+              "inspectionDate":
+                  _inspectionTabKey.currentState?.dateOfEventController.text,
+              "inspectionTime":
+                  _inspectionTabKey.currentState?.timeOfEventController.text,
+              "siteType":
+                  _inspectionTabKey.currentState?.selectedSiteType?.name,
+              "construction status": _inspectionTabKey
+                  .currentState
+                  ?.selectedConstructionStatus
+                  ?.name,
 
-        "Weather Status":
-            _inspectionTabKey.currentState?.selectedWeatherStatus?.name,
-        "wind": _inspectionTabKey.currentState?.selectedWind?.name,
-        "ground condition":
-            _inspectionTabKey.currentState?.selectedGroundCondition?.name,
-        "temperature":
-            _inspectionTabKey.currentState?.temperatureController.text,
+              "Weather Status":
+                  _inspectionTabKey.currentState?.selectedWeatherStatus?.name,
+              "wind": _inspectionTabKey.currentState?.selectedWind?.name,
+              "ground condition":
+                  _inspectionTabKey.currentState?.selectedGroundCondition?.name,
+              "temperature":
+                  _inspectionTabKey.currentState?.temperatureController.text,
 
-        "location": _inspectionTabKey.currentState?.locationController.text,
-        "Administartive Controls": {
-          "Q1": _inspectionTabKey
-              .currentState
-              ?.selectedValueAdministratorControls1
-              ?.name,
-          "Q2": _inspectionTabKey
-              .currentState
-              ?.selectedValueAdministratorControls2
-              ?.name,
-          "Q3": _inspectionTabKey
-              .currentState
-              ?.selectedValueAdministratorControls3
-              ?.name,
-          "Q4": _inspectionTabKey
-              .currentState
-              ?.selectedValueAdministratorControls4
-              ?.name,
-        },
-      },
+              "location":
+                  _inspectionTabKey.currentState?.locationController.text,
+              "Administartive Controls": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueAdministratorControls1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueAdministratorControls2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueAdministratorControls3
+                    ?.name,
+                "Q4": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueAdministratorControls4
+                    ?.name,
+              },
+              "Erosion and Sediment Control": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControl1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControl2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControl3
+                    ?.name,
+                "Q4": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControl4
+                    ?.name,
+                "Q5": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControl5
+                    ?.name,
+                "Q6": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControl6
+                    ?.name,
+                "Q7": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControl7
+                    ?.name,
+                "Q8": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControl8
+                    ?.name,
+              },
+
+              "Fuel and Oil Management": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueFuelAndOilManagement1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueFuelAndOilManagement2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueFuelAndOilManagement3
+                    ?.name,
+                "Q4": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueFuelAndOilManagement4
+                    ?.name,
+              },
+
+              "Waste Management": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWasteManagement1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWasteManagement2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWasteManagement3
+                    ?.name,
+              },
+
+              "Wildlife": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWildlife1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWildlife2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWildlife3
+                    ?.name,
+              },
+
+              "Air Quality Management": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueairQualityManagement1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueairQualityManagement2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueairQualityManagement3
+                    ?.name,
+              },
+              "Archaeology": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueArchaeology1
+                    ?.name,
+              },
+            }
+          : (_selectedInspectionType?.id == 2)
+          ? {
+              "Erosion and Sediment Control": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControlInESCInspection1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControlInESCInspection2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControlInESCInspection3
+                    ?.name,
+                "Q4": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControlInESCInspection4
+                    ?.name,
+                "Q5": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControlInESCInspection5
+                    ?.name,
+                "Q6": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControlInESCInspection6
+                    ?.name,
+                "Q7": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControlInESCInspection7
+                    ?.name,
+                "Q8": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControlInESCInspection8
+                    ?.name,
+                "Q9": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueErosionAndSedimentControlInESCInspection9
+                    ?.name,
+              },
+              "Water Management": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWaterManagementInESCInspection1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWaterManagementInESCInspection2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWaterManagementInESCInspection3
+                    ?.name,
+                "Q4": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWaterManagementInESCInspection4
+                    ?.name,
+                "Q5": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWaterManagementInESCInspection5
+                    ?.name,
+                "Q6": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWaterManagementInESCInspection6
+                    ?.name,
+                "Q7": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWaterManagementInESCInspection7
+                    ?.name,
+                "Q8": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueWaterManagementInESCInspection8
+                    ?.name,
+              },
+
+              "Site Conditions & Housekeeping": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueSiteConditionsHousekeeping1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueSiteConditionsHousekeeping2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueSiteConditionsHousekeeping3
+                    ?.name,
+              },
+            }
+          : (_selectedInspectionType?.id == 3)
+          ? {
+              "Description": {
+                "Q1": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite1
+                    ?.name,
+                "Q2": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite2
+                    ?.name,
+                "Q3": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite3
+                    ?.name,
+                "Q4": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite4
+                    ?.name,
+                "Q5": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite5
+                    ?.name,
+                "Q6": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite6
+                    ?.name,
+                "Q7": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite7
+                    ?.name,
+                "Q8": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite8
+                    ?.name,
+                "Q9": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite9
+                    ?.name,
+                "Q10": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite10
+                    ?.name,
+                "Q11": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite11
+                    ?.name,
+                "Q12": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite12
+                    ?.name,
+                "Q13": _inspectionTabKey
+                    .currentState
+                    ?.selectedValueEnvironmentalSite13
+                    ?.name,
+              },
+            }
+          : (_selectedInspectionType?.id == 5)
+          ? {
+              "Property Review Type": _inspectionTabKey
+                  .currentState
+                  ?.selectedPropertyReviewTypeType
+                  ?.name,
+              "Review Completed By": _inspectionTabKey
+                  .currentState
+                  ?.reviewCompletedByController
+                  .text,
+              "Location":
+                  _inspectionTabKey.currentState?.locationController.text,
+              "# of PIDs": {"pidList": _inspectionTabKey.currentState?.pidList},
+              "totalPropertySizeController": _inspectionTabKey
+                  .currentState
+                  ?.totalPropertySizeController
+                  .text,
+              "Property Zoning":
+                  _inspectionTabKey.currentState?.selectedPropertyZoning?.name,
+              "Property Use":
+                  _inspectionTabKey.currentState?.selectedPropertyZoning?.name,
+              "Items Onsite":
+                  _inspectionTabKey.currentState?.selectedItemsOnsite,
+            }
+          : (),
       // "attachments": {
       //   "documents": documentFiles.map((f) => path.basename(f.path)).toList(),
       //   "photos": photoFiles.map((f) => path.basename(f.path)).toList(),
@@ -277,7 +560,7 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
       delegate: _StickyTabBarDelegate(
         child: Container(
           color: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 10),
+          // padding: EdgeInsets.symmetric(vertical: 10),
           child: CustomTabBar(
             selectedInspectionType: _selectedInspectionType,
             items: tabItems,
@@ -288,14 +571,6 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
 
               // Validate only if currently on Inspection tab (index 0)
               if (selectedTabIndex == 0) {
-                // bool isValid =
-                //     await validateForm(); // Your form validation method
-
-                // if (!isValid) {
-                //   // Validation failed, show dialog is handled inside validateForm
-                //   return; // Prevent tab switch
-                // }
-
                 bool allowToNavigateOrNot1 =
                     inspectionChecklistTopSectionFormKey.currentState!
                         .validate();
@@ -328,7 +603,7 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
                           onPressed: () => Navigator.pop(context),
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 15),
-                            backgroundColor: Colors.blue,
+                            backgroundColor: AppColors.appPrimaryColor,
                             // minimumSize: buttonSize ?? const Size(100, 40),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
@@ -401,13 +676,13 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
     print("build called ======");
     final List<Widget> topWidgets = [
       const FieldLableWidget(
-        padding: EdgeInsets.only(left: 15),
+        // padding: EdgeInsets.only(left: 15),
         lable: "Inspection Type",
         isRequired: true,
       ),
       DropdownListWidget(
         hintText: "Inspection Type",
-        margin: EdgeInsets.symmetric(horizontal: 15),
+        margin: EdgeInsets.symmetric(horizontal: 0),
         selected: _selectedInspectionType,
 
         isRequired: true,
@@ -445,15 +720,15 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
             setState(() {});
           },
         ),
-      const SizedBox(height: 10),
 
+      // const SizedBox(height: 10),
       const FieldLableWidget(
         lable: "Inspector Name",
         isRequired: true,
-        padding: EdgeInsets.only(left: 15),
+        // padding: EdgeInsets.only(left: 15),
       ),
       SearchDropdownWidget(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         controller: inspectorNameController,
         icon: Icon(Icons.person),
         isRequired: true,
@@ -481,16 +756,16 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
           });
         },
       ),
-      const SizedBox(height: 10),
+      // const SizedBox(height: 10),
       const FieldLableWidget(
         lable: "Company",
         isRequired: true,
-        padding: EdgeInsets.only(left: 15),
+        // padding: EdgeInsets.only(left: 15),
       ),
       SearchDropdownWidget(
         hintTextStyle: TextStyle(fontSize: 12, color: Colors.grey),
 
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         controller: companyController,
         icon: Icon(Icons.contact_page),
         isRequired: true,
@@ -517,16 +792,16 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
           });
         },
       ),
-      const SizedBox(height: 10),
+      // const SizedBox(height: 10),
       const FieldLableWidget(
         lable: "Site Supervisor",
         isRequired: true,
-        padding: EdgeInsets.only(left: 15),
+        // padding: EdgeInsets.only(left: 15),
       ),
       SearchDropdownWidget(
         hintTextStyle: TextStyle(fontSize: 12, color: Colors.grey),
 
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         controller: siteSupervisorController,
         icon: Icon(Icons.person),
         isRequired: true,
@@ -554,85 +829,140 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
           });
         },
       ),
-      const SizedBox(height: 10),
+      // const SizedBox(height: 10),
       TextAreaWidget(
         height: 70,
         enabled: (companyController.text.isEmpty) ? false : true,
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         hintText: "Description",
         controller: projectDescController,
         lable: "Project #",
         onChange: (value) {},
       ),
-      const SizedBox(height: 10),
+      // const SizedBox(height: 10),
       TextAreaWidget(
         minLines: 1,
         height: 70,
         isRequired: true,
         keyboardType: TextInputType.number,
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         hintText: "N/A if not applicable to inspect",
         controller: approveNOController,
         lable: "Approval No #",
         onChange: (value) {},
       ),
-      const SizedBox(height: 10),
-      const FieldLableWidget(
-        lable: "Is this linked to an Incident?",
-        isRequired: true,
-        padding: EdgeInsets.only(left: 15),
+
+      // const SizedBox(height: 10),
+      AbsorbPointer(
+        absorbing: true,
+        child: Opacity(
+          opacity: 0.5,
+          child: const FieldLableWidget(
+            lable: "Is this linked to an Incident?",
+            isRequired: true,
+            padding: EdgeInsets.all(0),
+          ),
+        ),
       ),
 
-      RadioButtonFormField(
-        padding: (_selectedInspectionType?.name == "Fish Rescue")
-            ? EdgeInsets.only(bottom: 50)
-            : EdgeInsets.all(0),
-        radioItems: linkedToAnIncidentYesNo,
-        initialValue: selectedValue,
-        direction: RadioType.vertical,
-        activeColor: Colors.blue,
-        isRequired: true,
-        onChanged: (newValue) {
-          setState(() {
-            selectedValue = newValue;
-          });
-          if (selectedValue?.name == "Yes") {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const LinkedUnlinkedIncidentPage(),
-              ),
-            );
-          }
-        },
+      AbsorbPointer(
+        absorbing: true,
+        child: Opacity(
+          opacity: 0.5,
+          child: RadioButtonFormField(
+            padding: (_selectedInspectionType?.name == "Fish Rescue")
+                ? EdgeInsets.only(bottom: 50)
+                : EdgeInsets.all(0),
+            radioItems: linkedToAnIncidentYesNo,
+            // initialValue: selectedValue,
+            initialValue: linkedToAnIncidentYesNo[1],
+
+            direction: RadioType.vertical,
+            activeColor: AppColors.appPrimaryColor,
+            isRequired: false,
+            onChanged: (newValue) {
+              setState(() {
+                selectedValue = newValue;
+              });
+              if (selectedValue?.name == "Yes") {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LinkedUnlinkedIncidentPage(
+                      btnName1: "Link Incident",
+                      btnName2: "Unlink Incident",
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
+        ),
       ),
 
       if (_selectedInspectionType?.name == "Sample Collection")
         const SizedBox(height: 10),
       if (_selectedInspectionType?.name == "Sample Collection")
-        const FieldLableWidget(
-          lable: "Is this linked to an Inspection?",
-          isRequired: true,
-          padding: EdgeInsets.only(left: 15),
+        AbsorbPointer(
+          absorbing: true,
+          child: Opacity(
+            opacity: 0.5,
+            child: const FieldLableWidget(
+              lable: "Is this linked to an Inspection?",
+              isRequired: true,
+              padding: EdgeInsets.all(0),
+            ),
+          ),
         ),
       if (_selectedInspectionType?.name == "Sample Collection")
-        RadioButtonWidget(
-          radioItems: linkedToAnInspectionYesNo,
-          radioSelectedValue: selectedValueInspection,
-          direction: RadioType.vertical,
-          activeColor: Colors.blue,
-          isRequired: true,
-          showError: false,
-          onChange: (newValue) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (mounted) {
+        // RadioButtonWidget(
+        //   radioItems: linkedToAnInspectionYesNo,
+        //   radioSelectedValue: selectedValueInspection,
+        //   direction: RadioType.vertical,
+        //   activeColor: AppColors.appPrimaryColor,
+        //   isRequired: true,
+        //   showError: false,
+        //   onChange: (newValue) {
+        //     WidgetsBinding.instance.addPostFrameCallback((_) {
+        //       if (mounted) {
+        //         setState(() {
+        //           selectedValueInspection = newValue as DropdownItemModel;
+        //         });
+        //       }
+        //     });
+        //   },
+        //   textStyle: const TextStyle(fontSize: 16),
+        // ),
+        AbsorbPointer(
+          absorbing: true,
+          child: Opacity(
+            opacity: 0.5,
+            child: RadioButtonFormField(
+              radioItems: linkedToAnInspectionYesNo,
+              // initialValue: selectedValueInspection,
+              initialValue: linkedToAnInspectionYesNo[1],
+
+              direction: RadioType.vertical,
+              activeColor: AppColors.appPrimaryColor,
+              isRequired: false,
+              onChanged: (newValue) {
                 setState(() {
-                  selectedValueInspection = newValue as DropdownItemModel;
+                  selectedValueInspection = newValue;
                 });
-              }
-            });
-          },
-          textStyle: const TextStyle(fontSize: 16),
+                if (selectedValueInspection?.name == "Yes") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LinkedUnlinkedIncidentPage(
+                        btnName1: "Link Inspection",
+                        btnName2: "Unlink Inspection",
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
         ),
     ];
 
@@ -652,18 +982,31 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
             SliverList(
               delegate: SliverChildListDelegate([
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 15,
-                    horizontal: 15,
+                  padding: const EdgeInsets.only(
+                    top: 15,
+                    bottom: 3,
+                    left: 15,
+                    right: 15,
                   ),
-                  child: Card(
-                    color: Colors.white,
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    // color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(15),
                     ),
+                    // elevation: 4,
+                    // shape: RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(10),
+                    // ),
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.only(
+                        top: 5,
+                        bottom: 10,
+                        right: 16,
+                        left: 16,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: topWidgets,
@@ -745,13 +1088,16 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
         ),
       ),
 
-      floatingActionButton: _selectedInspectionType != null
+      // resizeToAvoidBottomInset: false, // This is true by default
+      bottomNavigationBar: _selectedInspectionType != null
           ? FloatingButtonsBottomBar(
               cancelButtonType: ButtonType.close,
               buttonType: selectedTabIndex == 3
                   ? ButtonType.submit
                   : ButtonType.next,
               onSave: () async {
+                print("object");
+                print(selectedTabIndex);
                 if (selectedTabIndex == 3) {
                   // logic on submit
                   final payload = generatePayload();
@@ -804,7 +1150,7 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 15,
                                 ),
-                                backgroundColor: Colors.blue,
+                                backgroundColor: AppColors.appPrimaryColor,
                                 // minimumSize: buttonSize ?? const Size(100, 40),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
@@ -861,9 +1207,9 @@ class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   _StickyTabBarDelegate({required this.child});
 
   @override
-  double get minExtent => 80;
+  double get minExtent => 70;
   @override
-  double get maxExtent => 80;
+  double get maxExtent => 70;
 
   @override
   Widget build(

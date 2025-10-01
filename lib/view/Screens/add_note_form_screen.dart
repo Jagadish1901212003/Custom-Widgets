@@ -1,3 +1,4 @@
+import 'package:custom_widgets/utility/app_colors.dart';
 import 'package:custom_widgets/view/Screens/notes_in_custom_tab_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -72,7 +73,7 @@ class _AddNoteFormScreenState extends State<AddNoteFormScreen> {
               onPressed: () => Navigator.pop(context),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                backgroundColor: Colors.blue,
+                backgroundColor: AppColors.appPrimaryColor,
                 // minimumSize: buttonSize ?? const Size(100, 40),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -105,15 +106,18 @@ class _AddNoteFormScreenState extends State<AddNoteFormScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-              child: Card(
-                color: Colors.white,
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(15),
+                ), // elevation: 4,
+                // shape: RoundedRectangleBorder(
+                //   borderRadius: BorderRadius.circular(8),
+                // ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -138,7 +142,7 @@ class _AddNoteFormScreenState extends State<AddNoteFormScreen> {
                       ),
                       // Note
                       TextAreaWidget(
-                        showCounterText: true,
+                        // showCounterText: true,
                         maxLength: 5000,
                         isRequired: true,
                         hintText: "Maximum character limit is 5000",

@@ -100,10 +100,10 @@
 //                 ),
 //                 TextButton.icon(
 //                   onPressed: _pickFiles,
-//                   icon: const Icon(Icons.upload_file, color: Colors.blue),
+//                   icon: const Icon(Icons.upload_file, color: AppColors.appPrimaryColor),
 //                   label: const Text(
 //                     "Upload",
-//                     style: TextStyle(fontSize: 14, color: Colors.blue),
+//                     style: TextStyle(fontSize: 14, color: AppColors.appPrimaryColor),
 //                   ),
 //                 ),
 //               ],
@@ -196,6 +196,7 @@
 // }
 
 import 'dart:io';
+import 'package:custom_widgets/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -377,10 +378,10 @@ class _AttachmentSectionState extends State<AttachmentSection> {
                 ),
                 TextButton.icon(
                   onPressed: _showUploadOptions,
-                  icon: const Icon(Icons.upload_file, color: Colors.blue),
+                  icon: const Icon(Icons.upload_file, color: AppColors.appPrimaryColor),
                   label: const Text(
                     "Upload",
-                    style: TextStyle(fontSize: 14, color: Colors.blue),
+                    style: TextStyle(fontSize: 14, color: AppColors.appPrimaryColor),
                   ),
                 ),
               ],

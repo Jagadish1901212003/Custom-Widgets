@@ -92,12 +92,14 @@ class _TextAreaWidgetState extends State<TextAreaWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Flexible(
-                  child: FieldLableWidget(
-                    lable: widget.lable,
-                    isRequired: widget.isRequired,
-                    visibleHelperIcon: widget.visibleHelperIcon,
-                    helperText: widget.helperText,
-                  ),
+                  child: (widget.lable != "")
+                      ? FieldLableWidget(
+                          lable: widget.lable,
+                          isRequired: widget.isRequired,
+                          visibleHelperIcon: widget.visibleHelperIcon,
+                          helperText: widget.helperText,
+                        )
+                      : SizedBox(height: 10),
                 ),
               ],
             ),

@@ -78,8 +78,9 @@ class _SearchEmployeeScreenState extends State<SearchEmployeeScreen> {
           },
           icon: const Icon(Icons.arrow_back_ios, color: AppColors.appBlack),
         ),
-        title: const Text(
-          'Your Name',
+        title: Text(
+          // 'Your Name',
+          widget.title,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -119,13 +120,13 @@ class _SearchEmployeeScreenState extends State<SearchEmployeeScreen> {
     return TextField(
       controller: _searchTextController,
       onChanged: (value) {
-        if (value.trim().length >= 2) {
-          _filteredList = _employeeDataList.where((item) {
-            return item.empName.toLowerCase().contains(value.toLowerCase()) ||
-                item.empId.toLowerCase().contains(value.toLowerCase());
-          }).toList();
-          setState(() {});
-        }
+        // if (value.trim().length >= 2) {
+        _filteredList = _employeeDataList.where((item) {
+          return item.empName.toLowerCase().contains(value.toLowerCase()) ||
+              item.empId.toLowerCase().contains(value.toLowerCase());
+        }).toList();
+        setState(() {});
+        // }
       },
       decoration: InputDecoration(
         hintText: "Search",

@@ -1,4 +1,5 @@
 import 'package:custom_widgets/model/dropdown_item_model.dart';
+import 'package:custom_widgets/utility/app_colors.dart';
 import 'package:custom_widgets/view/Screens/ca_description_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,8 +30,11 @@ class _CorrectiveActionsInCustomTabBarScreenState
             alignment: AlignmentGeometry.topRight,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Colors.blue, // Set button background color to blue
+                backgroundColor: AppColors
+                    .appPrimaryColor, // Set button background color to blue
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5), // border radius of 5
+                ),
               ),
               child: const Text(
                 '+ Add More',
@@ -95,13 +99,18 @@ class _CorrectiveActionsInCustomTabBarScreenState
               //   print(" error : $e");
               // }
 
-              return Card(
-                color: Colors.white,
-                margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                elevation: 3,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+              return Container(
+                // color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(15),
                 ),
+                margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                // elevation: 3,
+                // shape: RoundedRectangleBorder(
+                //   borderRadius: BorderRadius.circular(10),
+                // ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,

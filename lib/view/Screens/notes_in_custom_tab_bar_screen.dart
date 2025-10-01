@@ -1,3 +1,4 @@
+import 'package:custom_widgets/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'add_note_form_screen.dart';
 
@@ -55,10 +56,13 @@ class _NotesInCustomTabBarScreenState extends State<NotesInCustomTabBarScreen> {
         children: [
           Align(
             alignment: Alignment.topRight,
-            child: TextButton(
+            child: ElevatedButton(
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
+                backgroundColor: AppColors.appPrimaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5), // border radius of 5
+                ),
               ),
               onPressed: () => _navigateToAddNote(),
               child: const Text(
@@ -85,23 +89,28 @@ class _NotesInCustomTabBarScreenState extends State<NotesInCustomTabBarScreen> {
                   ),
                   margin: const EdgeInsets.only(top: 12, bottom: 4),
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade100,
+                    color: AppColors.appPrimaryColor,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
                     'Note ${index + 1}',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                      color: Colors.white,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () => _navigateToAddNote(note: note, index: index),
-                  child: Card(
-                    color: Colors.white,
+                  child: Container(
+                    // color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                     margin: const EdgeInsets.symmetric(vertical: 8),
-                    elevation: 4,
+                    // elevation: 4,
                     child: ListTile(
                       title: Text(
                         'Date: ${note.date.toLocal().toString().split(' ')[0]}',
