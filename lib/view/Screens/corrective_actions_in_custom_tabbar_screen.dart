@@ -25,10 +25,12 @@ class _CorrectiveActionsInCustomTabBarScreenState
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: EdgeInsets.only(right: 10),
+          // padding: EdgeInsets.only(right: 10),
+          padding: EdgeInsets.only(top: 25, bottom: 0, left: 10, right: 10),
+
           child: Align(
             alignment: AlignmentGeometry.topRight,
-            child: ElevatedButton(
+            child: TextButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors
                     .appPrimaryColor, // Set button background color to blue
@@ -194,6 +196,32 @@ class _CorrectiveActionsInCustomTabBarScreenState
             }
           },
         ),
+
+        if (submittedCorrectiveActions.isEmpty)
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 50),
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color.fromARGB(255, 228, 224, 224),
+                ),
+                child: const Icon(
+                  Icons.assignment, // icon for corrective actions
+                  size: 40,
+                  color: AppColors.appPrimaryColor,
+                ),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                "No corrective actions added",
+                style: TextStyle(color: Colors.grey),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
       ],
     );
   }

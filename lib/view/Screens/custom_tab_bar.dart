@@ -902,8 +902,66 @@ class _CustomTabBarState extends State<CustomTabBar>
                   height: tabHeight,
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.only(top: 4),
+
+                  // child: Column(
+                  //   mainAxisSize: MainAxisSize.min,
+                  //   children: [
+                  //     Icon(
+                  //       item.icon,
+                  //       color: isSelected
+                  //           ? widget.selectedColor
+                  //           : widget.unselectedColor,
+                  //     ),
+                  //     const SizedBox(height: 4),
+                  //     Text(
+                  //       item.label,
+                  //       style: TextStyle(
+                  //         color: isSelected
+                  //             ? widget.selectedColor
+                  //             : widget.unselectedColor,
+                  //         fontWeight: isSelected
+                  //             ? FontWeight.bold
+                  //             : FontWeight.normal,
+                  //       ),
+                  //       textAlign: TextAlign.center,
+                  //     ),
+                  //   ],
+                  // ),
+
+                  // child: Column(
+                  //   mainAxisSize: MainAxisSize.min,
+                  //   mainAxisAlignment:
+                  //       MainAxisAlignment.center, // center content vertically
+                  //   children: [
+                  //     Icon(
+                  //       item.icon,
+                  //       color: isSelected
+                  //           ? widget.selectedColor
+                  //           : widget.unselectedColor,
+                  //     ),
+                  //     const SizedBox(height: 4),
+                  //     Flexible(
+                  //       child: Text(
+                  //         item.label,
+                  //         maxLines: 1, // prevents multi-line overflow
+                  //         overflow:
+                  //             TextOverflow.ellipsis, // adds "..." if too long
+                  //         style: TextStyle(
+                  //           color: isSelected
+                  //               ? widget.selectedColor
+                  //               : widget.unselectedColor,
+                  //           fontWeight: isSelected
+                  //               ? FontWeight.bold
+                  //               : FontWeight.normal,
+                  //         ),
+                  //         textAlign: TextAlign.center,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         item.icon,
@@ -911,7 +969,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                             ? widget.selectedColor
                             : widget.unselectedColor,
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 2),
                       Text(
                         item.label,
                         style: TextStyle(
@@ -923,6 +981,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                               : FontWeight.normal,
                         ),
                         textAlign: TextAlign.center,
+                        softWrap: true, // allows text to wrap if too long
                       ),
                     ],
                   ),

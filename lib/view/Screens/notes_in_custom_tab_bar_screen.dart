@@ -50,18 +50,18 @@ class _NotesInCustomTabBarScreenState extends State<NotesInCustomTabBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 50, bottom: 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Align(
             alignment: Alignment.topRight,
-            child: ElevatedButton(
+            child: TextButton(
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: AppColors.appPrimaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5), // border radius of 5
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
               onPressed: () => _navigateToAddNote(),
@@ -75,6 +75,34 @@ class _NotesInCustomTabBarScreenState extends State<NotesInCustomTabBarScreen> {
               ),
             ),
           ),
+
+          // Show placeholder if no notes
+          if (notes.isEmpty)
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 50),
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromARGB(255, 228, 224, 224),
+                  ),
+                  child: const Icon(
+                    Icons.note_alt, // changed icon for Notes
+                    size: 40,
+                    color: AppColors.appPrimaryColor,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                const Text(
+                  "No notes added",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ),
+
+          // List of notes
           ...notes.asMap().entries.map((entry) {
             final index = entry.key;
             final note = entry.value;
@@ -103,14 +131,12 @@ class _NotesInCustomTabBarScreenState extends State<NotesInCustomTabBarScreen> {
                 GestureDetector(
                   onTap: () => _navigateToAddNote(note: note, index: index),
                   child: Container(
-                    // color: Colors.white,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     margin: const EdgeInsets.symmetric(vertical: 8),
-                    // elevation: 4,
                     child: ListTile(
                       title: Text(
                         'Date: ${note.date.toLocal().toString().split(' ')[0]}',
@@ -127,6 +153,7 @@ class _NotesInCustomTabBarScreenState extends State<NotesInCustomTabBarScreen> {
               ],
             );
           }).toList(),
+
           const SizedBox(height: 80),
         ],
       ),

@@ -1028,9 +1028,6 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
               makeStickyTabBar(),
 
             // 3rd section
-
-            // // error
-            // if (hasSelectedInspectionType)
             if (_selectedInspectionType != null &&
                 _selectedInspectionType?.name != "Fish Rescue")
               SliverList(
@@ -1045,45 +1042,12 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
                   ),
                 ]),
               ),
-
-            ////  no error but 3rd section is not visible
-            ///
-            // if (hasSelectedInspectionType)
-            //   if (_selectedInspectionType != null &&
-            //       _selectedInspectionType?.name != "Fish Rescue")
-            //     SliverToBoxAdapter(
-            //       child: Container(
-            //         margin: const EdgeInsets.only(bottom: 25),
-            //         padding: const EdgeInsets.only(top: 20, bottom: 80),
-            //         child: IndexedStack(
-            //           index: selectedTabIndex,
-            //           children: sectionWidgets,
-            //         ),
-            //       ),
-            //     ),
-            // if (hasSelectedInspectionType)
-            //   if (_selectedInspectionType != null &&
-            //       _selectedInspectionType?.name != "Fish Rescue")
-            //     SliverToBoxAdapter(
-            //       child: Container(
-            //         margin: const EdgeInsets.only(bottom: 25),
-            //         padding: const EdgeInsets.only(top: 20, bottom: 80),
-            //         child: sectionWidgets[selectedTabIndex], // ⬅️ Correct!
-            //       ),
-            //     ),
-            // if (hasSelectedInspectionType)
-            //   if (_selectedInspectionType != null &&
-            //       _selectedInspectionType?.name != "Fish Rescue")
-            //     SliverToBoxAdapter(
-            //       child: Container(
-            //         margin: const EdgeInsets.only(bottom: 25),
-            //         padding: const EdgeInsets.only(top: 20, bottom: 80),
-            //         child: IndexedStack(
-            //           index: selectedTabIndex,
-            //           children: sectionWidgets,
-            //         ),
-            //       ),
-            //     ),
+            // if (_selectedInspectionType != null &&
+            //     _selectedInspectionType?.name != "Fish Rescue")
+            //   SliverToBoxAdapter(
+            //     child:
+            //         sectionWidgets[selectedTabIndex], // only show the active tab
+            //   ),
           ],
         ),
       ),
@@ -1109,69 +1073,69 @@ class _InspectionChecklistScreenState extends State<InspectionChecklistScreen> {
                 }
 
                 try {
-                  if (selectedTabIndex == 0) {
-                    bool allowToNavigateOrNot1 =
-                        inspectionChecklistTopSectionFormKey.currentState!
-                            .validate();
-                    bool allowToNavigateOrNot2 = _formKey.currentState!
-                        .validate();
+                  // if (selectedTabIndex == 0) {
+                  //   bool allowToNavigateOrNot1 =
+                  //       inspectionChecklistTopSectionFormKey.currentState!
+                  //           .validate();
+                  //   bool allowToNavigateOrNot2 = _formKey.currentState!
+                  //       .validate();
 
-                    if (!allowToNavigateOrNot1 || !allowToNavigateOrNot2) {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          backgroundColor: Colors.white,
-                          // icon: const Icon(Icons.warning, color: Colors.orange),
-                          // title: const Text("Warning"),
-                          title: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Icon(
-                                    Icons.warning,
-                                    color: Colors.orange,
-                                  ),
-                                  SizedBox(width: 5),
-                                  const Text("Warning"),
-                                  SizedBox(width: 5),
-                                ],
-                              ),
-                              Divider(color: Colors.orange),
-                            ],
-                          ),
-                          content: const Text(
-                            "Please fill all mandatory details.",
-                          ),
-                          actions: [
-                            ElevatedButton(
-                              onPressed: () => Navigator.pop(context),
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
-                                ),
-                                backgroundColor: AppColors.appPrimaryColor,
-                                // minimumSize: buttonSize ?? const Size(100, 40),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(15),
-                                  ),
-                                ),
-                              ),
-                              child: const Text(
-                                "OK",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                      return;
-                    }
-                  }
+                  //   if (!allowToNavigateOrNot1 || !allowToNavigateOrNot2) {
+                  //     showDialog(
+                  //       context: context,
+                  //       builder: (context) => AlertDialog(
+                  //         backgroundColor: Colors.white,
+                  //         // icon: const Icon(Icons.warning, color: Colors.orange),
+                  //         // title: const Text("Warning"),
+                  //         title: Column(
+                  //           children: [
+                  //             Row(
+                  //               mainAxisAlignment: MainAxisAlignment.start,
+                  //               children: [
+                  //                 const Icon(
+                  //                   Icons.warning,
+                  //                   color: Colors.orange,
+                  //                 ),
+                  //                 SizedBox(width: 5),
+                  //                 const Text("Warning"),
+                  //                 SizedBox(width: 5),
+                  //               ],
+                  //             ),
+                  //             Divider(color: Colors.orange),
+                  //           ],
+                  //         ),
+                  //         content: const Text(
+                  //           "Please fill all mandatory details.",
+                  //         ),
+                  //         actions: [
+                  //           ElevatedButton(
+                  //             onPressed: () => Navigator.pop(context),
+                  //             style: ElevatedButton.styleFrom(
+                  //               padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 15,
+                  //               ),
+                  //               backgroundColor: AppColors.appPrimaryColor,
+                  //               // minimumSize: buttonSize ?? const Size(100, 40),
+                  //               shape: RoundedRectangleBorder(
+                  //                 borderRadius: BorderRadius.all(
+                  //                   Radius.circular(15),
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             child: const Text(
+                  //               "OK",
+                  //               style: TextStyle(
+                  //                 color: Colors.white,
+                  //                 fontWeight: FontWeight.bold,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     );
+                  //     return;
+                  //   }
+                  // }
 
                   if (selectedTabIndex < tabItems.length - 1) {
                     setState(() {

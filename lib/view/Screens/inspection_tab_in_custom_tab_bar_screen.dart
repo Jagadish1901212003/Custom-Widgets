@@ -892,9 +892,15 @@ class InspectionTabInCustomTabBarScreenState
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 3,
-                  horizontal: 15,
+                // padding: const EdgeInsets.symmetric(
+                //   vertical: 3,
+                //   horizontal: 15,
+                // ),
+                padding: const EdgeInsets.only(
+                  top: 20,
+                  bottom: 5,
+                  left: 15,
+                  right: 15,
                 ),
                 child: Container(
                   decoration: BoxDecoration(
